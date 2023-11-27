@@ -17,4 +17,19 @@
             <column name="email" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
+    <changeSet id="2" author="User2">
+        <createTable tableName="rideRequests">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_users"/>
+            </column>
+            <column name="uuid" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="pickUpLocation" type="VARCHAR(255)"/>
+            <column name="dropOffLocation" type="VARCHAR(255)"/>
+            <column name="type" type="VARCHAR(255)"/>
+            <column name="size" type="VARCHAR(255)"/>
+            <column name="date" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>

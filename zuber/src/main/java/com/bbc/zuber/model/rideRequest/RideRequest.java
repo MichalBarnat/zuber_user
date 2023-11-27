@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-@Entity
+@Entity(name = "rideRequests")
 @Data
 @Builder
 @AllArgsConstructor
