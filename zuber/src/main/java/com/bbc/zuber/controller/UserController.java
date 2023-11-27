@@ -38,12 +38,12 @@ public class UserController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         userService.deleteById(id);
-        kafkaTemplate.send("user-deleted",getUser(id));
+        kafkaTemplate.send("user-deleted", getUser(id));
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDto> edit(@RequestBody UpdateUserCommand command){
+    public ResponseEntity<UserDto> edit(@RequestBody UpdateUserCommand command) {
         User userToEdit = modelMapper.map(command, User.class);
         User editedUser = userService.edit(userToEdit);
         kafkaTemplate.send("user-edited", editedUser);
