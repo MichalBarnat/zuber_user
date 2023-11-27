@@ -1,5 +1,6 @@
 package com.bbc.zuber.model.user;
 
+import com.bbc.zuber.model.user.enums.Sex;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
