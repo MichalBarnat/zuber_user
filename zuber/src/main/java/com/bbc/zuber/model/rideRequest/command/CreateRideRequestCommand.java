@@ -4,7 +4,6 @@ import com.bbc.zuber.model.rideRequest.enums.Size;
 import com.bbc.zuber.model.rideRequest.enums.Type;
 import lombok.*;
 
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
