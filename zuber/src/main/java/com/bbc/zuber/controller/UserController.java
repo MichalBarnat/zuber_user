@@ -29,9 +29,9 @@ public class UserController {
     @PostMapping
     public ResponseEntity<UserDto> save(@RequestBody CreateUserCommand command) {
         User userToSave = modelMapper.map(command, User.class);
-        User savedDoctor = userService.save(userToSave);
-        kafkaTemplate.send("user-registration", savedDoctor);
-        return ResponseEntity.ok(modelMapper.map(savedDoctor, UserDto.class));
+        User savedUser = userService.save(userToSave);
+        kafkaTemplate.send("user-registration", savedUser);
+        return ResponseEntity.ok(modelMapper.map(savedUser, UserDto.class));
     }
 
 }
