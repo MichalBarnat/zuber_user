@@ -14,6 +14,7 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @Configuration
 public class KafkaProducerConfig {
@@ -36,5 +37,15 @@ public class KafkaProducerConfig {
     @Bean
     public KafkaTemplate<String, User> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
+    }
+
+    @Bean
+    public ProducerFactory<String, UUID> uuidProducerFactory() {
+        return new DefaultKafkaProducerFactory<>(producerConfig());
+    }
+
+    @Bean
+    public KafkaTemplate<String, UUID> uuidKafkaTemplate() {
+        return new KafkaTemplate<>(uuidProducerFactory());
     }
 }
