@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-@Entity(name = "rideInformation")
+@Entity(name = "ride_info")
 @Data
 @Builder
 @AllArgsConstructor

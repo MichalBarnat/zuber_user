@@ -1,8 +1,7 @@
 package com.bbc.zuber.configuration.kafka;
 
-import com.bbc.zuber.model.rideRequest.RideRequest;
+import com.bbc.zuber.model.riderequest.RideRequest;
 import com.bbc.zuber.model.user.User;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.beans.factory.annotation.Value;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;

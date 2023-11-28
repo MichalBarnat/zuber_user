@@ -1,7 +1,7 @@
-package com.bbc.zuber.model.rideRequest;
+package com.bbc.zuber.model.riderequest;
 
-import com.bbc.zuber.model.rideRequest.enums.Size;
-import com.bbc.zuber.model.rideRequest.enums.Type;
+import com.bbc.zuber.model.riderequest.enums.Size;
+import com.bbc.zuber.model.riderequest.enums.Type;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-@Entity(name = "rideRequests")
+@Entity(name = "ride_requests")
 @Data
 @Builder
 @AllArgsConstructor
@@ -20,6 +20,7 @@ public class RideRequest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private UUID uuid;
+    private UUID userId;
     private String pickUpLocation;
     private String dropOffLocation;
     @Enumerated(EnumType.STRING)

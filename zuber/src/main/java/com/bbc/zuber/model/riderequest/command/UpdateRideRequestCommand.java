@@ -1,7 +1,7 @@
-package com.bbc.zuber.model.rideRequest.command;
+package com.bbc.zuber.model.riderequest.command;
 
-import com.bbc.zuber.model.rideRequest.enums.Size;
-import com.bbc.zuber.model.rideRequest.enums.Type;
+import com.bbc.zuber.model.riderequest.enums.Size;
+import com.bbc.zuber.model.riderequest.enums.Type;
 import lombok.*;
 
 @NoArgsConstructor

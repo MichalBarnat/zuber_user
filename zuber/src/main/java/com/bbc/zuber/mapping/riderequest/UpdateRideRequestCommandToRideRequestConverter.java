@@ -1,7 +1,7 @@
 package com.bbc.zuber.mapping.riderequest;
 
-import com.bbc.zuber.model.rideRequest.RideRequest;
-import com.bbc.zuber.model.rideRequest.command.UpdateRideRequestCommand;
+import com.bbc.zuber.model.riderequest.RideRequest;
+import com.bbc.zuber.model.riderequest.command.UpdateRideRequestCommand;
 import org.modelmapper.Converter;
 import org.modelmapper.spi.MappingContext;
 import org.springframework.stereotype.Service;

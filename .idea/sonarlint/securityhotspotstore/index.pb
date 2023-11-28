@@ -31,3 +31,13 @@ z
 Jzuber/src/main/java/com/bbc/zuber/mapping/user/UserToUserDtoConverter.java,1\9\19135780657ee980f484cad8a7ea5df650257625
 „
 Tzuber/src/main/java/com/bbc/zuber/mapping/user/CreateUserCommandToUserConverter.java,d\3\d318d08a304f9d26325d0db74060e87369a3139a
+s
+Czuber/src/main/java/com/bbc/zuber/model/rideRequest/enums/Size.java,3\0\30d8f8be86de115d3568fec30ed37cac4c6e64ec
+™
+izuber/src/main/java/com/bbc/zuber/mapping/riderequest/UpdateRideRequestCommandToRideRequestConverter.java,0\5\0547eeb5f089534ba9b663a8725c1e8f61b03e6b
+
+_zuber/src/main/java/com/bbc/zuber/mapping/riderequest/RideRequestToRideRequestDtoConverter.java,8\4\84568ae606f00f4422078fcb195a9380db6c44e1
+™
+izuber/src/main/java/com/bbc/zuber/mapping/riderequest/CreateRideRequestCommandToRideRequestConverter.java,1\b\1be3a0f2fc6ad2b1f0c4f2fdcef11d178594e1c6
+n
+>zuber/src/main/java/com/bbc/zuber/model/rideinfo/RideInfo.java,6\1\61443644496f2177484c0b4cf58113289fffdbc6

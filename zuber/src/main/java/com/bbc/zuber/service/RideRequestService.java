@@ -1,7 +1,7 @@
 package com.bbc.zuber.service;
 
 import com.bbc.zuber.exception.RideRequestNotFoundException;
-import com.bbc.zuber.model.rideRequest.RideRequest;
+import com.bbc.zuber.model.riderequest.RideRequest;
 import com.bbc.zuber.repository.RideRequestRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

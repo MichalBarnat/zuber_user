@@ -20,20 +20,23 @@
     <changeSet id="2" author="User2">
         <createTable tableName="ride_requests">
             <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_users"/>
+                <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="uuid" type="UUID">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="pickUpLocation" type="VARCHAR(255)"/>
-            <column name="dropOffLocation" type="VARCHAR(255)"/>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pick_up_location" type="VARCHAR(255)"/>
+            <column name="drop_off_location" type="VARCHAR(255)"/>
             <column name="type" type="VARCHAR(255)"/>
             <column name="size" type="VARCHAR(255)"/>
             <column name="date" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
     <changeSet id="3" author="User3">
-        <createTable tableName="ride_information">
+        <createTable tableName="ride_info">
             <column name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pk_users"/>
             </column>

@@ -1,9 +1,10 @@
 package com.bbc.zuber.controller;
 
-import com.bbc.zuber.model.rideRequest.RideRequest;
-import com.bbc.zuber.model.rideRequest.command.CreateRideRequestCommand;
-import com.bbc.zuber.model.rideRequest.dto.RideRequestDto;
+import com.bbc.zuber.model.riderequest.RideRequest;
+import com.bbc.zuber.model.riderequest.command.CreateRideRequestCommand;
+import com.bbc.zuber.model.riderequest.dto.RideRequestDto;
 import com.bbc.zuber.service.RideRequestService;
+import com.bbc.zuber.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -20,6 +21,7 @@ public class RideRequestController {
 
     private final RideRequestService rideRequestService;
     private final ModelMapper modelMapper;
+    private final UserService userService;
     private final KafkaTemplate<String, RideRequest> kafkaTemplate;
 
     @GetMapping("/{id}")
@@ -27,9 +29,10 @@ public class RideRequestController {
         return rideRequestService.getRideRequest(id);
     }
 
-    @PostMapping
-    public ResponseEntity<RideRequestDto> save(@RequestBody CreateRideRequestCommand command) {
+    @PostMapping("/{id}")
+    public ResponseEntity<RideRequestDto> save(@RequestBody CreateRideRequestCommand command, @PathVariable Long id) {
         RideRequest rideRequestToSave = modelMapper.map(command, RideRequest.class);
+        rideRequestToSave.setUserId(userService.getUser(id).getUuid());
         RideRequest savedRideRequest = rideRequestService.createRideRequest(rideRequestToSave);
         kafkaTemplate.send("riderequest", savedRideRequest);
         return ResponseEntity.ok(modelMapper.map(savedRideRequest, RideRequestDto.class));
