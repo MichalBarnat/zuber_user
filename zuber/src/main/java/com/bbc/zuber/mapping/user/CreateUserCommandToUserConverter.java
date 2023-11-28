@@ -1,4 +1,4 @@
-package com.bbc.zuber.mappings.user;
+package com.bbc.zuber.mapping.user;
 
 import com.bbc.zuber.model.user.User;
 import com.bbc.zuber.model.user.command.CreateUserCommand;
