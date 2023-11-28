@@ -1,15 +1,23 @@
 package com.bbc.zuber.service;
 
+import com.bbc.zuber.exception.RideRequestNotFoundException;
 import com.bbc.zuber.model.rideRequest.RideRequest;
 import com.bbc.zuber.repository.RideRequestRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 @RequiredArgsConstructor
 public class RideRequestService {
     private final RideRequestRepository rideRequestRepository;
 
+    @GetMapping("/{id}")
+    public RideRequest getRideRequest(@PathVariable Long id){
+        return rideRequestRepository.findById(id)
+                .orElseThrow(() -> new RideRequestNotFoundException(id));
+    }
 
     public RideRequest createRideRequest(RideRequest rideRequest) {
         return rideRequestRepository.save(rideRequest);

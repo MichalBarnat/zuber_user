@@ -1,5 +1,6 @@
 package com.bbc.zuber.configuration.kafka;
 
+import com.bbc.zuber.model.rideRequest.RideRequest;
 import com.bbc.zuber.model.user.User;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.springframework.beans.factory.annotation.Value;
@@ -47,5 +48,15 @@ public class KafkaProducerConfig {
     @Bean
     public KafkaTemplate<String, UUID> uuidKafkaTemplate() {
         return new KafkaTemplate<>(uuidProducerFactory());
+    }
+
+    @Bean
+    public ProducerFactory<String, RideRequest> rideRequestProducerFactory() {
+        return new DefaultKafkaProducerFactory<>(producerConfig());
+    }
+
+    @Bean
+    public KafkaTemplate<String, RideRequest> rideRequestKafkaTemplate() {
+        return new KafkaTemplate<>(rideRequestProducerFactory());
     }
 }

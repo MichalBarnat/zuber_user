@@ -24,5 +24,11 @@ public class KafkaTopicConfig {
                 .build();
     }
 
+    @Bean
+    public NewTopic rideRequestRegistration() {
+        return TopicBuilder.name("ride_request-registration")
+                .build();
+    }
+
 
 }
