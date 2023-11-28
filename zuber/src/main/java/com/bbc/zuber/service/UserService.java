@@ -32,6 +32,10 @@ public class UserService {
         }
     }
 
+    public void deleteAll() {
+        userRepository.deleteAll();
+    }
+
     @Transactional
     public User edit(User user) {
         return userRepository.findById(user.getId())
