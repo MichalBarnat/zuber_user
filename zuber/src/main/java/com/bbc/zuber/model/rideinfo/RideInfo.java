@@ -1,4 +1,4 @@
-package com.bbc.zuber.model.rideInformation;
+package com.bbc.zuber.model.rideinfo;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,7 +16,7 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RideInformation {
+public class RideInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

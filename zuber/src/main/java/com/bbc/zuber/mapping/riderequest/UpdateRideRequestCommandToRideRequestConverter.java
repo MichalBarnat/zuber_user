@@ -1,21 +1,20 @@
-package com.bbc.zuber.mapping.rideRequest;
+package com.bbc.zuber.mapping.riderequest;
 
 import com.bbc.zuber.model.rideRequest.RideRequest;
-import com.bbc.zuber.model.rideRequest.command.CreateRideRequestCommand;
+import com.bbc.zuber.model.rideRequest.command.UpdateRideRequestCommand;
 import org.modelmapper.Converter;
 import org.modelmapper.spi.MappingContext;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
 
 @Service
-public class CreateRideRequestCommandToRideRequestConverter implements Converter<CreateRideRequestCommand, RideRequest> {
+public class UpdateRideRequestCommandToRideRequestConverter implements Converter<UpdateRideRequestCommand, RideRequest> {
+
     @Override
-    public RideRequest convert(MappingContext<CreateRideRequestCommand, RideRequest> mappingContext) {
-        CreateRideRequestCommand command = mappingContext.getSource();
+    public RideRequest convert(MappingContext<UpdateRideRequestCommand, RideRequest> mappingContext) {
+        UpdateRideRequestCommand command = mappingContext.getSource();
 
         return RideRequest.builder()
-                .uuid(UUID.randomUUID())
                 .pickUpLocation(command.getPickUpLocation())
                 .dropOffLocation(command.getDropOffLocation())
                 .type(command.getType())

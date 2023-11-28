@@ -1,4 +1,4 @@
-package com.bbc.zuber.mapping.rideRequest;
+package com.bbc.zuber.mapping.riderequest;
 
 import com.bbc.zuber.model.rideRequest.RideRequest;
 import com.bbc.zuber.model.rideRequest.dto.RideRequestDto;
