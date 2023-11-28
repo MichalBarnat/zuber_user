@@ -4,9 +4,11 @@ import com.bbc.zuber.model.user.User;
 import com.bbc.zuber.model.user.command.CreateUserCommand;
 import org.modelmapper.Converter;
 import org.modelmapper.spi.MappingContext;
+import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
+@Service
 public class CreateUserCommandToUserConverter implements Converter<CreateUserCommand, User> {
 
     @Override
