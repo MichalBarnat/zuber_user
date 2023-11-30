@@ -10,4 +10,11 @@ public class UserAppApplication {
 		SpringApplication.run(UserAppApplication.class, args);
 	}
 
+	//TODO 30.11.2023
+	// DESERIALIZACJA JSONA Z KAFKI (JACKSON, MAPSTRUCT)
+	// platnosci
+	// napiwki <optional>
+	// liqubase testowe dane
+	// prometheus
+	// kafdrop
 }
