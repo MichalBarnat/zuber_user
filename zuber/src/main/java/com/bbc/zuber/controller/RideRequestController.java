@@ -34,7 +34,7 @@ public class RideRequestController {
         RideRequest rideRequestToSave = modelMapper.map(command, RideRequest.class);
         rideRequestToSave.setUserId(userService.getUser(id).getUuid());
         RideRequest savedRideRequest = rideRequestService.createRideRequest(rideRequestToSave);
-        kafkaTemplate.send("riderequest", savedRideRequest);
+        kafkaTemplate.send("ride-request", savedRideRequest);
         return ResponseEntity.ok(modelMapper.map(savedRideRequest, RideRequestDto.class));
     }
 
