@@ -61,3 +61,5 @@ Czuber/src/main/java/com/bbc/zuber/model/riderequest/enums/Type.java,9\3\935b40
 Yzuber/src/main/java/com/bbc/zuber/model/riderequest/command/UpdateRideRequestCommand.java,2\4\24dc345bf51d4a7fc84283c0671806a180c26f82
 j
 :zuber/src/main/java/com/bbc/zuber/service/UserService.java,d\7\d7f7b93462fe0e4bb7378eae277cf19c73cd5e1b
+p
+@zuber/src/main/java/com/bbc/zuber/repository/UserRepository.java,5\7\573da69a4e13b3a007aeabc5c9786ee91e2f13eb

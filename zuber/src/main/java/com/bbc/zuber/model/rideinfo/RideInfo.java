@@ -20,10 +20,8 @@ public class RideInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private UUID uuid;
+    private UUID userUuid;
+    private UUID driverUuid;
     private String driverName;
-    private String driverCar;
-    private String plateNumber;
-    private String latitudeGeoDriver;
-    private String longitudeGeoDriver;
+    private String driverLocation;
 }

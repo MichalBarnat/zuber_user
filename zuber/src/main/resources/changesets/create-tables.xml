@@ -38,16 +38,14 @@
     <changeSet id="3" author="User3">
         <createTable tableName="ride_info">
             <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_users"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_ride_info"/>
             </column>
-            <column name="uuid" type="UUID">
+            <column name="user_uuid" type="UUID">
                 <constraints nullable="false" unique="true"/>
             </column>
+            <column name="driver_uuid" type="UUID"/>
             <column name="driver_name" type="VARCHAR(255)"/>
-            <column name="driver_car" type="VARCHAR(255)"/>
-            <column name="plate_number" type="VARCHAR(255)"/>
-            <column name="latitude_geo_driver" type="VARCHAR(255)"/>
-            <column name="longitude_geo_driver" type="VARCHAR(255)"/>
+            <column name="driver_location" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>
