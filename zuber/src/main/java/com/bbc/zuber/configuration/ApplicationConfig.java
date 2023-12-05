@@ -1,5 +1,6 @@
 package com.bbc.zuber.configuration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
@@ -17,5 +18,11 @@ public class ApplicationConfig {
         return modelMapper;
     }
 
+    @Bean
+    public ObjectMapper objectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        //objectMapper.configure(DeserializationFeature.)
+        return objectMapper;
+    }
 
 }

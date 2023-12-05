@@ -30,5 +30,4 @@ public class KafkaTopicConfig {
                 .build();
     }
 
-
 }

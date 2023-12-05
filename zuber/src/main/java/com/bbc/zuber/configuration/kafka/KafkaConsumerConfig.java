@@ -1,8 +1,11 @@
 package com.bbc.zuber.configuration.kafka;
 
 import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +19,10 @@ import java.util.Map;
 
 @Configuration
 public class KafkaConsumerConfig {
+
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @Value("${spring.kafka.bootstrap-servers}")
     private String bootstrapServers;
     @Value("${spring.kafka.consumer.group-id}")

@@ -18,4 +18,21 @@ public class KafkaListeners {
         System.out.println(savedRideInfo);
         System.out.println("Have a good trip!");
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

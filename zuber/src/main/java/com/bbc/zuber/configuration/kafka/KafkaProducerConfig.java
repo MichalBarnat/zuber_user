@@ -2,6 +2,8 @@ package com.bbc.zuber.configuration.kafka;
 
 import com.bbc.zuber.model.riderequest.RideRequest;
 import com.bbc.zuber.model.user.User;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -18,6 +20,10 @@ import java.util.UUID;
 
 @Configuration
 public class KafkaProducerConfig {
+
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @Value("${spring.kafka.bootstrap-servers}")
     private String bootstrapServer;
 
@@ -30,32 +36,45 @@ public class KafkaProducerConfig {
     }
 
     @Bean
-    public ProducerFactory<String, User> producerFactory() {
-        return new DefaultKafkaProducerFactory<>(producerConfig());
+    public ProducerFactory<String, Object> producerFactory() {
+        Map<String, Object> producerConfigs = producerConfig();
+        return new DefaultKafkaProducerFactory<>(
+                producerConfigs,
+                new StringSerializer(),
+                new JsonSerializer<>(objectMapper)
+        );
     }
 
     @Bean
-    public KafkaTemplate<String, User> kafkaTemplate() {
+    public KafkaTemplate<String, Object> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 
-    @Bean
-    public ProducerFactory<String, UUID> uuidProducerFactory() {
-        return new DefaultKafkaProducerFactory<>(producerConfig());
-    }
 
-    @Bean
-    public KafkaTemplate<String, UUID> uuidKafkaTemplate() {
-        return new KafkaTemplate<>(uuidProducerFactory());
-    }
 
-    @Bean
-    public ProducerFactory<String, RideRequest> rideRequestProducerFactory() {
-        return new DefaultKafkaProducerFactory<>(producerConfig());
-    }
 
-    @Bean
-    public KafkaTemplate<String, RideRequest> rideRequestKafkaTemplate() {
-        return new KafkaTemplate<>(rideRequestProducerFactory());
-    }
+
+
+
+
+
+//    @Bean
+//    public ProducerFactory<String, UUID> uuidProducerFactory() {
+//        return new DefaultKafkaProducerFactory<>(producerConfig());
+//    }
+//
+//    @Bean
+//    public KafkaTemplate<String, UUID> uuidKafkaTemplate() {
+//        return new KafkaTemplate<>(uuidProducerFactory());
+//    }
+//
+//    @Bean
+//    public ProducerFactory<String, RideRequest> rideRequestProducerFactory() {
+//        return new DefaultKafkaProducerFactory<>(producerConfig());
+//    }
+//
+//    @Bean
+//    public KafkaTemplate<String, RideRequest> rideRequestKafkaTemplate() {
+//        return new KafkaTemplate<>(rideRequestProducerFactory());
+//    }
 }
