@@ -30,4 +30,10 @@ public class KafkaTopicConfig {
                 .build();
     }
 
+    @Bean
+    public NewTopic rideCancel(){
+        return TopicBuilder.name("ride-cancel")
+                .build();
+    }
+
 }

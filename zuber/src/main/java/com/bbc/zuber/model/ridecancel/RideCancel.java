@@ -1,4 +1,4 @@
-package com.bbc.zuber.model.rideinfo;
+package com.bbc.zuber.model.ridecancel;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,20 +11,16 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-@Entity(name = "ride_info")
+@Entity(name = "ride_cancelled")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RideInfo {
+public class RideCancel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private UUID rideAssignmentId;
-    private UUID userUuid;
-    private UUID driverUuid;
-    private String driverName;
-    private String driverLocation;
+    private Boolean cancel;
 
-    //todo dodac skąd dokąd i za jaki czas dojedzie ETA
 }

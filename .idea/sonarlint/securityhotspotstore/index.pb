@@ -75,3 +75,5 @@ s
 Czuber/src/main/java/com/bbc/zuber/model/riderequest/enums/Size.java,5\5\5585a8160d9693586ea10f4fa24af42861c785eb
 ~
 Nzuber/src/main/java/com/bbc/zuber/configuration/kafka/KafkaConsumerConfig.java,4\f\4f294cf52b6567b471c58d3d34da6cd1ba844fd7
+k
+;zuber/src/main/java/com/bbc/zuber/kafka/KafkaListeners.java,4\3\43635b252af9a41e2717ed74c6775127dcc458ba
