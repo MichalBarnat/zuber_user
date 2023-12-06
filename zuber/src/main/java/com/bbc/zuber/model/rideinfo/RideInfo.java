@@ -9,6 +9,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity(name = "ride_info")
@@ -20,11 +22,16 @@ public class RideInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private UUID rideAssignmentId;
+    private UUID rideAssignmentUuid;
     private UUID userUuid;
     private UUID driverUuid;
     private String driverName;
     private String driverLocation;
-
-    //todo dodac skąd dokąd i za jaki czas dojedzie ETA
+    private String pickUpLocation;
+    private String dropUpLocation;
+    private LocalDateTime orderTime;
+    private LocalDateTime estimatedArrivalTime;
+    private BigDecimal costOfRide;
+    private String timeToArrivalInMinutes;
+    private String rideLengthInKilometers;
 }
