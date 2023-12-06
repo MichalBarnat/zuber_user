@@ -24,4 +24,6 @@ public class RideInfo {
     private UUID driverUuid;
     private String driverName;
     private String driverLocation;
+
+    //todo dodac skąd dokąd i za jaki czas dojedzie ETA
 }
