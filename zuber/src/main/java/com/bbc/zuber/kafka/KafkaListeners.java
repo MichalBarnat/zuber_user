@@ -22,6 +22,7 @@ public class KafkaListeners {
     void rideInfoListener(String rideInfoString) throws JsonProcessingException {
         RideInfo savedRideInfo = objectMapper.readValue(rideInfoString, RideInfo.class);
         rideInfoService.save(savedRideInfo);
+        logger.info("Successfully rideInfo");
         System.out.println("Your info about ride: ");
         System.out.println(savedRideInfo);
         System.out.println("Have a good trip!");
