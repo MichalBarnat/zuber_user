@@ -20,7 +20,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class RideInfo {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private UUID rideAssignmentUuid;
     private UUID userUuid;

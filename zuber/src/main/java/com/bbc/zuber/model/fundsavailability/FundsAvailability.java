@@ -18,7 +18,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class FundsAvailability {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private UUID uuid;
     private String pickUpLocation;

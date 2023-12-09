@@ -18,7 +18,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class RideCancel {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private UUID rideAssignmentId;
     private Boolean cancel;

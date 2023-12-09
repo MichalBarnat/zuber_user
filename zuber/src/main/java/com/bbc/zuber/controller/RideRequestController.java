@@ -50,10 +50,10 @@ public class RideRequestController {
         kafkaTemplate.send("user-funds-availability", fundsAvailabilityJson);
         // Dodać delay na kilka sekund,
 
-        if(!fundsAvailability.isFundsAvailable()) {
-            // dodaj odpowiedni status HTTP
-            return ResponseEntity.ok("NO HAVE MONEY!");
-        }
+//        if(!fundsAvailability.isFundsAvailable()) {
+//            // dodaj odpowiedni status HTTP
+//            return ResponseEntity.ok("NO HAVE MONEY!");
+//        }
 
         RideRequest savedRideRequest = rideRequestService.createRideRequest(rideRequestToSave);
         String rideRequestJson = objectMapper.writeValueAsString(savedRideRequest);
