@@ -23,25 +23,10 @@ public class KafkaListeners {
         RideInfo savedRideInfo = objectMapper.readValue(rideInfoString, RideInfo.class);
         rideInfoService.save(savedRideInfo);
         logger.info("Successfully rideInfo");
-        System.out.println("Your info about ride: ");
-        System.out.println(savedRideInfo);
-        System.out.println("Have a good trip!");
+        logger.info("Your info about ride: ");
+        logger.info("{}", savedRideInfo);
+        logger.info("Have a good trip!");
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
