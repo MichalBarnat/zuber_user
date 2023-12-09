@@ -36,4 +36,10 @@ public class KafkaTopicConfig {
                 .build();
     }
 
+    @Bean
+    public NewTopic checkFundsAvailability(){
+        return TopicBuilder.name("user-funds-availability")
+                .build();
+    }
+
 }

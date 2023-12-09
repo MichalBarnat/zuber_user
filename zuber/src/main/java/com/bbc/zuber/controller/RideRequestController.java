@@ -1,8 +1,10 @@
 package com.bbc.zuber.controller;
 
+import com.bbc.zuber.model.fundsavailability.FundsAvailability;
 import com.bbc.zuber.model.riderequest.RideRequest;
 import com.bbc.zuber.model.riderequest.command.CreateRideRequestCommand;
 import com.bbc.zuber.model.riderequest.dto.RideRequestDto;
+import com.bbc.zuber.service.FundsAvailabilityService;
 import com.bbc.zuber.service.RideRequestService;
 import com.bbc.zuber.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -13,6 +15,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 
 @RestController
@@ -33,9 +37,24 @@ public class RideRequestController {
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<RideRequestDto> save(@RequestBody CreateRideRequestCommand command, @PathVariable Long id) throws JsonProcessingException {
+    public ResponseEntity<?> save(@RequestBody CreateRideRequestCommand command, @PathVariable Long id) throws JsonProcessingException {
         RideRequest rideRequestToSave = modelMapper.map(command, RideRequest.class);
         rideRequestToSave.setUserId(userService.getUser(id).getUuid());
+
+        FundsAvailability fundsAvailability = FundsAvailability.builder()
+                .uuid(UUID.randomUUID())
+                .pickUpLocation(command.getPickUpLocation())
+                .dropOffLocation(command.getDropOffLocation())
+                .build();
+        String fundsAvailabilityJson = objectMapper.writeValueAsString(fundsAvailability);
+        kafkaTemplate.send("user-funds-availability", fundsAvailabilityJson);
+        // Dodać delay na kilka sekund,
+
+        if(!fundsAvailability.isFundsAvailable()) {
+            // dodaj odpowiedni status HTTP
+            return ResponseEntity.ok("NO HAVE MONEY!");
+        }
+
         RideRequest savedRideRequest = rideRequestService.createRideRequest(rideRequestToSave);
         String rideRequestJson = objectMapper.writeValueAsString(savedRideRequest);
         kafkaTemplate.send("ride-request", rideRequestJson);
