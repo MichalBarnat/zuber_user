@@ -14,4 +14,15 @@
             <column header="email" name="email"/>
         </loadData>
     </changeSet>
+    <changeSet id="2" author="michal">
+        <sql>
+            CREATE SEQUENCE IF NOT EXISTS users_seq;
+        </sql>
+    </changeSet>
+
+    <changeSet id="3" author="michal">
+        <sql>
+            SELECT setval('users_seq', COALESCE((SELECT MAX(id)+1 FROM users), 1), false);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
