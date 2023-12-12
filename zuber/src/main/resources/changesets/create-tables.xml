@@ -15,6 +15,7 @@
             <column name="dob" type="DATE"/>
             <column name="sex" type="VARCHAR(255)"/>
             <column name="email" type="VARCHAR(255)"/>
+            <column name="balance" type="DECIMAL(19, 2)"/>
         </createTable>
     </changeSet>
     <changeSet id="2" author="User2">
