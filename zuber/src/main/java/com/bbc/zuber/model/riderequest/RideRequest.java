@@ -20,7 +20,7 @@ public class RideRequest {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private UUID uuid;
-    private UUID userId;
+    private UUID userUuid;
     private String pickUpLocation;
     private String dropOffLocation;
     @Enumerated(EnumType.STRING)

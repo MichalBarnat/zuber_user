@@ -2,22 +2,34 @@ package com.bbc.zuber.service;
 
 import com.bbc.zuber.exception.UserNotFoundException;
 import com.bbc.zuber.model.user.User;
-import com.bbc.zuber.model.user.command.UpdateUserCommand;
 import com.bbc.zuber.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
 
-    public User getUser(Long id) {
+    public User findById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(id));
+    }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    public User findByUuid(UUID uuid) {
+        return findAll().stream()
+                .filter(user -> user.getUuid().equals(uuid))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(String.format("User with uuid: %s not found!", uuid)));
     }
 
     public User save(User user) {

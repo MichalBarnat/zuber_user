@@ -21,8 +21,9 @@ public class FundsAvailability {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private UUID uuid;
+    private UUID userUuid;
     private String pickUpLocation;
     private String dropOffLocation;
-    private boolean fundsAvailable;
+    private Boolean fundsAvailable;
 
 }

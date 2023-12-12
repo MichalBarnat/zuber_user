@@ -14,8 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
-
 @RestController
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
@@ -29,7 +27,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     public User getUser(@PathVariable Long id) {
-        return userService.getUser(id);
+        return userService.findById(id);
     }
 
     @PostMapping

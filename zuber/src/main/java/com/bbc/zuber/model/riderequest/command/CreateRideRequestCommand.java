@@ -12,7 +12,8 @@ import java.util.UUID;
 @Setter
 @Builder
 public class CreateRideRequestCommand {
-    private UUID userId;
+    //todo wywalic userUuid bo i tak nie jest uzywane
+    private UUID userUuid;
     private String pickUpLocation;
     private String dropOffLocation;
     private Type type;

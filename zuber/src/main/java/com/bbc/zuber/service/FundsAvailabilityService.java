@@ -29,8 +29,9 @@ public class FundsAvailabilityService {
                 .orElseThrow();
     }
 
-    public void setFundsAvailable(UUID uuid, boolean available) {
+    public void setFundsAvailability(UUID uuid, boolean available) {
         FundsAvailability fundsAvailability = findByUuid(uuid);
         fundsAvailability.setFundsAvailable(available);
+        save(fundsAvailability);
     }
 }
