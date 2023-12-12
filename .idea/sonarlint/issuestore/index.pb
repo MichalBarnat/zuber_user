@@ -65,3 +65,7 @@ Czuber/src/main/java/com/bbc/zuber/model/riderequest/enums/Size.java,5\5\5585a8
 Nzuber/src/main/java/com/bbc/zuber/configuration/kafka/KafkaConsumerConfig.java,4\f\4f294cf52b6567b471c58d3d34da6cd1ba844fd7
 k
 ;zuber/src/main/java/com/bbc/zuber/kafka/KafkaListeners.java,4\3\43635b252af9a41e2717ed74c6775127dcc458ba
+€
+Pzuber/src/main/java/com/bbc/zuber/model/fundsavailability/FundsAvailability.java,8\b\8bc9b35900feb5e73680ae9b0372c46674cd7e22
+r
+Bzuber/src/main/java/com/bbc/zuber/model/ridecancel/RideCancel.java,f\9\f913e76b7b42afc13a25c085560c8e7ac7ef9241
