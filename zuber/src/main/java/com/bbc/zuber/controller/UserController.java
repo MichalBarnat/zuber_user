@@ -7,6 +7,7 @@ import com.bbc.zuber.model.user.dto.UserDto;
 import com.bbc.zuber.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -33,7 +34,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserDto> save(@RequestBody CreateUserCommand command) throws JsonProcessingException {
+    public ResponseEntity<UserDto> save(@RequestBody @Valid CreateUserCommand command) throws JsonProcessingException {
         User userToSave = modelMapper.map(command, User.class);
         User savedUser = userService.save(userToSave);
         String userJson = objectMapper.writeValueAsString(savedUser);
@@ -49,7 +50,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDto> edit(@PathVariable Long id, @RequestBody UpdateUserCommand command) throws JsonProcessingException {
+    public ResponseEntity<UserDto> edit(@PathVariable Long id, @RequestBody @Valid UpdateUserCommand command) throws JsonProcessingException {
         User userToEdit = modelMapper.map(command, User.class);
         userToEdit.setId(id);
         User editedUser = userService.edit(userToEdit);

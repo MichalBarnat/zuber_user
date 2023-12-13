@@ -2,7 +2,6 @@ package com.bbc.zuber.service;
 
 import com.bbc.zuber.exception.UserNotFoundException;
 import com.bbc.zuber.model.user.User;
-import com.bbc.zuber.model.user.command.UpdateUserCommand;
 import com.bbc.zuber.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
