@@ -1,6 +1,5 @@
 package com.bbc.zuber.controller;
 
-import com.bbc.zuber.kafka.KafkaListeners;
 import com.bbc.zuber.model.fundsavailability.FundsAvailability;
 import com.bbc.zuber.model.riderequest.RideRequest;
 import com.bbc.zuber.model.riderequest.command.CreateRideRequestCommand;
@@ -21,10 +20,6 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-
-import static org.springframework.http.HttpStatus.FORBIDDEN;
 
 
 @RestController
@@ -42,8 +37,8 @@ public class RideRequestController {
     private final Logger logger = LoggerFactory.getLogger(RideRequestController.class);
 
     @GetMapping("/{id}")
-    public RideRequest getRideRequest(@PathVariable Long id) {
-        return rideRequestService.getRideRequest(id);
+    public ResponseEntity<RideRequest> getRideRequest(@PathVariable Long id) {
+        return ResponseEntity.ok(rideRequestService.getRideRequest(id));
     }
 
     @PostMapping("/{id}")
@@ -80,7 +75,7 @@ public class RideRequestController {
         }
 
         if (fundsAvailability.getFundsAvailable() == null) {
-            return new ResponseEntity<>("Timeout reached waiting for funds availability", HttpStatus.REQUEST_TIMEOUT);
+            return new ResponseEntity<>("Timeout reached waiting for funds availability STATUS: ", HttpStatus.REQUEST_TIMEOUT);
         }
 
         if (!fundsAvailability.getFundsAvailable()) {
