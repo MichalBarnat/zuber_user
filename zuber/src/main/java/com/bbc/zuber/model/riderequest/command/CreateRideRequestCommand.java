@@ -15,9 +15,6 @@ import java.util.UUID;
 @Setter
 @Builder
 public class CreateRideRequestCommand {
-
-    @ValidUuid(message = "INVALID_USER_ID_FORMAT")
-    private UUID userId;
     @NotBlank(message = "PICK_UP_LOCATION_NOT_BLANK")
     private String pickUpLocation;
     @NotBlank(message = "DROP_OFF_LOCATION_NOT_BLANK")

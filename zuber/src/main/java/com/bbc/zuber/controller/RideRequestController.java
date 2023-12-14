@@ -42,23 +42,9 @@ public class RideRequestController {
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<?> save(@RequestBody @Valid CreateRideRequestCommand command, @PathVariable Long id) throws JsonProcessingException {
+    public ResponseEntity<RideRequestDto> save(@RequestBody @Valid CreateRideRequestCommand command, @PathVariable Long id) throws JsonProcessingException {
         RideRequest rideRequestToSave = modelMapper.map(command, RideRequest.class);
         rideRequestToSave.setUserId(userService.getUser(id).getUuid());
-
-        FundsAvailability fundsAvailability = FundsAvailability.builder()
-                .uuid(UUID.randomUUID())
-                .pickUpLocation(command.getPickUpLocation())
-                .dropOffLocation(command.getDropOffLocation())
-                .build();
-        String fundsAvailabilityJson = objectMapper.writeValueAsString(fundsAvailability);
-        kafkaTemplate.send("user-funds-availability", fundsAvailabilityJson);
-        // Dodać delay na kilka sekund,
-
-//        if(!fundsAvailability.isFundsAvailable()) {
-//            // dodaj odpowiedni status HTTP
-//            return ResponseEntity.ok("NO HAVE MONEY!");
-//        }
 
         RideRequest savedRideRequest = rideRequestService.createRideRequest(rideRequestToSave);
         String rideRequestJson = objectMapper.writeValueAsString(savedRideRequest);
