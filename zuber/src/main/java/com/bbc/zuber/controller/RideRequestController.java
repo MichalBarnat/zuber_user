@@ -52,6 +52,7 @@ public class RideRequestController {
                 .userUuid(userService.findById(id).getUuid())
                 .pickUpLocation(command.getPickUpLocation())
                 .dropOffLocation(command.getDropOffLocation())
+                .fundsAvailable(false)
                 .build();
 
         fundsAvailabilityService.save(fundsAvailability);
@@ -59,26 +60,17 @@ public class RideRequestController {
         String fundsAvailabilityJson = objectMapper.writeValueAsString(fundsAvailability);
         kafkaTemplate.send("user-funds-availability", fundsAvailabilityJson);
 
-
-        final long timeout = 10000;
-        long startTime = System.currentTimeMillis();
-        while (fundsAvailability.getFundsAvailable() == null && System.currentTimeMillis() - startTime < timeout) {
-            try {
-                Thread.sleep(500);
-                fundsAvailability = fundsAvailabilityService.findByUuid(requestUuid);
-                logger.info("THIS UUID IS: {}",requestUuid);
-                logger.info("STATUS: {}",fundsAvailabilityService.findByUuid(requestUuid).getFundsAvailable());
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                return new ResponseEntity<>("Interrupted while waiting for funds availability", HttpStatus.INTERNAL_SERVER_ERROR);
-            }
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
 
-        if (fundsAvailability.getFundsAvailable() == null) {
+        if (fundsAvailabilityService.findByUuid(requestUuid).getFundsAvailable() == null) {
             return new ResponseEntity<>("Timeout reached waiting for funds availability STATUS: ", HttpStatus.REQUEST_TIMEOUT);
         }
 
-        if (!fundsAvailability.getFundsAvailable()) {
+        if (!fundsAvailabilityService.findByUuid(requestUuid).getFundsAvailable()) {
             return new ResponseEntity<>("User doesn't have enough funds for this ride!", HttpStatus.FORBIDDEN);
         }
 
