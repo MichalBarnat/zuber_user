@@ -32,10 +32,12 @@ public class UserService {
                 .orElseThrow(() -> new IllegalArgumentException(String.format("User with uuid: %s not found!", uuid)));
     }
 
+    @Transactional
     public User save(User user) {
         return userRepository.save(user);
     }
 
+    @Transactional
     public void deleteById(Long id) {
         if (userRepository.existsById(id)) {
             userRepository.deleteById(id);
@@ -44,6 +46,7 @@ public class UserService {
         }
     }
 
+    @Transactional
     public void deleteAll() {
         userRepository.deleteAll();
     }

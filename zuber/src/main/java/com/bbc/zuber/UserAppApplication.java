@@ -12,11 +12,19 @@ public class UserAppApplication {
 		SpringApplication.run(UserAppApplication.class, args);
 	}
 
-	//TODO 30.11.2023
+	//30.11.2023
 	// DESERIALIZACJA JSONA Z KAFKI (JACKSON, MAPSTRUCT)
 	// platnosci
 	// napiwki <optional>
 	// liqubase testowe dane
 	// prometheus
 	// kafdrop
+
+	//TODO 14.12.2023
+	// czat
+	// obsluga zgloszen (pojedyncze wiadomosci czekajace na odpowiedz)
+	// piginacja, softdelete,
+	// wireMock
+	// widoki bazodanowe
+	// LOAD BALANCING
 }
