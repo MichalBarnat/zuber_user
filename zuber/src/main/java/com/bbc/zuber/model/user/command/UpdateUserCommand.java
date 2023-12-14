@@ -5,6 +5,8 @@ import com.bbc.zuber.validations.email.UniqueEmail;
 import jakarta.validation.constraints.Email;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -19,4 +21,5 @@ public class UpdateUserCommand {
     @Email(message = "INCORRECT_EMAIL_FORMAT")
     private String email;
     private Sex sex;
+    private BigDecimal balance;
 }

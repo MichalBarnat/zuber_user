@@ -21,6 +21,7 @@ public class UpdateUserCommandToUserConverter implements Converter<UpdateUserCom
                 .dob(LocalDate.parse(command.getDob()))
                 .sex(command.getSex())
                 .email(command.getEmail())
+                .balance(command.getBalance())
                 .build();
 
     }

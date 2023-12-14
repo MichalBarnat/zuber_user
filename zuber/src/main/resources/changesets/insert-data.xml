@@ -3,6 +3,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
     <changeSet author="krystian" id="1">
         <loadData encoding="UTF-8" file="changesets/data/users.csv" quotchar="&quot;" separator="," tableName="users">
             <column header="id" name="id"/>
@@ -14,6 +15,7 @@
             <column header="email" name="email"/>
         </loadData>
     </changeSet>
+
     <changeSet id="2" author="michal">
         <sql>
             CREATE SEQUENCE IF NOT EXISTS users_seq;

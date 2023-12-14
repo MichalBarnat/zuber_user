@@ -69,3 +69,7 @@ k
 Pzuber/src/main/java/com/bbc/zuber/model/fundsavailability/FundsAvailability.java,8\b\8bc9b35900feb5e73680ae9b0372c46674cd7e22
 r
 Bzuber/src/main/java/com/bbc/zuber/model/ridecancel/RideCancel.java,f\9\f913e76b7b42afc13a25c085560c8e7ac7ef9241
+w
+Gzuber/src/main/java/com/bbc/zuber/service/FundsAvailabilityService.java,b\5\b5a1d9deea00e896f4b318295119cb175c52c3d9
+„
+Tzuber/src/main/java/com/bbc/zuber/mapping/user/CreateUserCommandToUserConverter.java,d\3\d318d08a304f9d26325d0db74060e87369a3139a

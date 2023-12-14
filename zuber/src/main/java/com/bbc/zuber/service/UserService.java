@@ -7,22 +7,37 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
 
-    public User getUser(Long id) {
+    public User findById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(id));
     }
 
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    public User findByUuid(UUID uuid) {
+        return findAll().stream()
+                .filter(user -> user.getUuid().equals(uuid))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(String.format("User with uuid: %s not found!", uuid)));
+    }
+
+    @Transactional
     public User save(User user) {
         return userRepository.save(user);
     }
 
+    @Transactional
     public void deleteById(Long id) {
         if (userRepository.existsById(id)) {
             userRepository.deleteById(id);
@@ -31,6 +46,7 @@ public class UserService {
         }
     }
 
+    @Transactional
     public void deleteAll() {
         userRepository.deleteAll();
     }

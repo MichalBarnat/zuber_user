@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -29,4 +30,5 @@ public class User {
     private Sex sex;
     @Email(message = "Wrong email pattern. Check it once again!")
     private String email;
+    private BigDecimal balance;
 }

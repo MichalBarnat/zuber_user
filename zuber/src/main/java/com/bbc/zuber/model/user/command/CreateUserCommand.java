@@ -8,6 +8,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -28,4 +30,5 @@ public class CreateUserCommand {
     private String email;
     @NotNull(message = "SEX_NOT_NULL")
     private Sex sex;
+    private BigDecimal balance;
 }
