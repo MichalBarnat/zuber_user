@@ -6,9 +6,14 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,9 +26,9 @@ public class CreateUserCommand {
     private String name;
     @NotBlank(message = "SURNAME_NOT_BLANK")
     private String surname;
-    //@Past(message = "DOB_CANNOT_BE_FUTURE_OR_PRESENT")
-    //@NotNull(message = "DOB_NOT_NULL")
-    private String dob;
+    @Past(message = "DOB_CANNOT_BE_FUTURE_OR_PRESENT")
+    @NotNull(message = "DOB_NOT_NULL")
+    private LocalDate dob;
     @UniqueEmail(message = "GIVEN_EMAIL_EXISTS")
     @Email(message = "INCORRECT_EMAIL_FORMAT")
     @NotBlank(message = "EMAIL_NOT_BLANK")

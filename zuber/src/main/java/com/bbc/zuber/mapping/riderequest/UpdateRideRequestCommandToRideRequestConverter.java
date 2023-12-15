@@ -6,7 +6,6 @@ import org.modelmapper.Converter;
 import org.modelmapper.spi.MappingContext;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class UpdateRideRequestCommandToRideRequestConverter implements Converter<UpdateRideRequestCommand, RideRequest> {
 

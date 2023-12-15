@@ -5,11 +5,13 @@ import com.bbc.zuber.model.riderequest.enums.Type;
 import lombok.Builder;
 import lombok.Value;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Value
 @Builder
 public class RideRequestDto {
+
     Long id;
     UUID uuid;
     UUID userId;
@@ -17,5 +19,5 @@ public class RideRequestDto {
     String dropOffLocation;
     Type type;
     Size size;
-    String date;
+    LocalDateTime date;
 }

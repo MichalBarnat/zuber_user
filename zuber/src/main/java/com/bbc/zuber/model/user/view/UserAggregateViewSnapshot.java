@@ -1,4 +1,4 @@
-package com.bbc.zuber.model.user;
+package com.bbc.zuber.model.user.view;
 
 import jakarta.persistence.Table;
 

@@ -9,6 +9,7 @@ import java.util.UUID;
 @Value
 @Builder
 public class UserDto {
+
     Long id;
     UUID uuid;
     String name;

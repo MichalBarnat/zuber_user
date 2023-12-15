@@ -19,6 +19,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RideInfo {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
