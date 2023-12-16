@@ -1,7 +1,7 @@
 package com.bbc.zuber.model.riderequest.dto;
 
-import com.bbc.zuber.model.riderequest.enums.Size;
-import com.bbc.zuber.model.riderequest.enums.Type;
+import com.bbc.zuber.model.riderequest.enums.RideRequestSize;
+import com.bbc.zuber.model.riderequest.enums.RideRequestType;
 import lombok.Builder;
 import lombok.Value;
 
@@ -15,7 +15,7 @@ public class RideRequestDto {
     UUID userId;
     String pickUpLocation;
     String dropOffLocation;
-    Type type;
-    Size size;
+    RideRequestType type;
+    RideRequestSize size;
     String date;
 }
