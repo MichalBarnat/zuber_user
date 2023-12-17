@@ -1,9 +1,9 @@
 package com.bbc.zuber.controller;
 
+import com.bbc.zuber.model.fundsavailability.FundsAvailability;
 import com.bbc.zuber.model.riderequest.RideRequest;
 import com.bbc.zuber.model.riderequest.command.CreateRideRequestCommand;
 import com.bbc.zuber.model.riderequest.dto.RideRequestDto;
-import com.bbc.zuber.model.riderequest.response.RideRequestResponse;
 import com.bbc.zuber.service.RideRequestService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequestMapping("/api/rideRequests")
@@ -36,11 +33,43 @@ public class RideRequestController {
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<RideRequestResponse> save(@PathVariable Long id, @RequestBody @Valid CreateRideRequestCommand command) {
-        RideRequest rideRequest = modelMapper.map(command, RideRequest.class);
-        RideRequestDto dto = modelMapper.map(rideRequest, RideRequestDto.class);
-        RideRequestResponse response = rideRequestService.createRideRequest(rideRequest, id);
-        response.setRideRequestDto(dto);
-        return new ResponseEntity<>(response, CREATED);
+    public ResponseEntity<?> save(@RequestBody @Valid CreateRideRequestCommand command, @PathVariable Long id) throws JsonProcessingException {
+        RideRequest rideRequestToSave = modelMapper.map(command, RideRequest.class);
+        rideRequestToSave.setUserUuid(userService.findById(id).getUuid());
+
+        UUID requestUuid = UUID.randomUUID();
+        FundsAvailability fundsAvailability = FundsAvailability.builder()
+                .uuid(requestUuid)
+                .userUuid(userService.findById(id).getUuid())
+                .pickUpLocation(command.getPickUpLocation())
+                .dropOffLocation(command.getDropOffLocation())
+                .fundsAvailable(false)
+                .build();
+
+        fundsAvailabilityService.save(fundsAvailability);
+
+        String fundsAvailabilityJson = objectMapper.writeValueAsString(fundsAvailability);
+        kafkaTemplate.send("user-funds-availability", fundsAvailabilityJson);
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        if (fundsAvailabilityService.findByUuid(requestUuid).getFundsAvailable() == null) {
+            return new ResponseEntity<>("Timeout reached waiting for funds availability STATUS: ", HttpStatus.REQUEST_TIMEOUT);
+        }
+
+        if (!fundsAvailabilityService.findByUuid(requestUuid).getFundsAvailable()) {
+            return new ResponseEntity<>("User doesn't have enough funds for this ride!", HttpStatus.FORBIDDEN);
+        }
+
+    
+        RideRequest savedRideRequest = rideRequestService.createRideRequest(rideRequestToSave);
+        String rideRequestJson = objectMapper.writeValueAsString(savedRideRequest);
+        kafkaTemplate.send("ride-request", rideRequestJson);
+
+        return ResponseEntity.ok(modelMapper.map(savedRideRequest, RideRequestDto.class));
     }
 }

@@ -1,6 +1,6 @@
 package com.bbc.zuber.model.riderequest.enums;
 
-public enum Type {
+public enum RideRequestType {
     STANDARD,
     ECO,
     PREMIUM

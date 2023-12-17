@@ -1,5 +1,4 @@
 package com.bbc.zuber.model.riderequest;
-
 import com.bbc.zuber.model.riderequest.enums.Size;
 import com.bbc.zuber.model.riderequest.enums.Type;
 import jakarta.persistence.Entity;
@@ -32,9 +31,11 @@ public class RideRequest {
     private UUID userUuid;
     private String pickUpLocation;
     private String dropOffLocation;
-    @Enumerated(STRING)
-    private Type type;
-    @Enumerated(STRING)
-    private Size size;
-    private LocalDateTime date;
+    @Enumerated(EnumType.STRING)
+    private RideRequestType type;
+    @Enumerated(EnumType.STRING)
+    private RideRequestSize size;
+    private String date;
+
+    //todo zmienic date na localdate
 }

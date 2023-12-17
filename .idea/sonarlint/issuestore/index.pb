@@ -7,8 +7,6 @@ i
 Yzuber/src/main/java/com/bbc/zuber/model/rideRequest/command/CreateRideRequestCommand.java,4\5\452769cbc2703a5402c8123e8c1aa559413ad8fc
 {
 Kzuber/src/main/java/com/bbc/zuber/model/rideRequest/dto/RideRequestDto.java,3\5\35030765ca4b7bdccbdedd7a8b509d1be3d4d63f
-s
-Czuber/src/main/java/com/bbc/zuber/model/rideRequest/enums/Type.java,b\5\b5e5e6f34da885bb6f7a1c4aaf215bda35c78f17
 v
 Fzuber/src/main/java/com/bbc/zuber/configuration/ApplicationConfig.java,3\a\3ac524865997398d3662b99d82210ef6a50c2b9d
 p
@@ -27,8 +25,6 @@ f
 6zuber/src/main/java/com/bbc/zuber/model/user/User.java,c\c\cca6dee944b68797f6a9f0b1f3be25a016d1fa62
 w
 Gzuber/src/main/java/com/bbc/zuber/repository/RideRequestRepository.java,c\8\c8172f18d5e3fe9be12cbeecee9b00e83fcee15c
-s
-Czuber/src/main/java/com/bbc/zuber/model/rideRequest/enums/Size.java,3\0\30d8f8be86de115d3568fec30ed37cac4c6e64ec
 v
 Fzuber/src/main/java/com/bbc/zuber/exception/UserNotFoundException.java,0\1\01dec7da18a937d08ae8669bb3cf2d9079d9108f
 p
@@ -57,10 +53,6 @@ t
 Dzuber/src/main/java/com/bbc/zuber/model/riderequest/RideRequest.java,9\c\9c9da6ca3ed09eac3daaee0895873e04b026efff
 n
 >zuber/src/main/java/com/bbc/zuber/model/rideinfo/RideInfo.java,6\1\61443644496f2177484c0b4cf58113289fffdbc6
-s
-Czuber/src/main/java/com/bbc/zuber/model/riderequest/enums/Type.java,9\3\935b403c57b434700fbe555d60bb88c21cf9c88b
-s
-Czuber/src/main/java/com/bbc/zuber/model/riderequest/enums/Size.java,5\5\5585a8160d9693586ea10f4fa24af42861c785eb
 ~
 Nzuber/src/main/java/com/bbc/zuber/configuration/kafka/KafkaConsumerConfig.java,4\f\4f294cf52b6567b471c58d3d34da6cd1ba844fd7
 k
@@ -73,3 +65,9 @@ w
 Gzuber/src/main/java/com/bbc/zuber/service/FundsAvailabilityService.java,b\5\b5a1d9deea00e896f4b318295119cb175c52c3d9
 „
 Tzuber/src/main/java/com/bbc/zuber/mapping/user/CreateUserCommandToUserConverter.java,d\3\d318d08a304f9d26325d0db74060e87369a3139a
+{
+Kzuber/src/main/java/com/bbc/zuber/model/user/UserAggregateViewSnapshot.java,b\1\b1b2c5f31b73dcde426bf7d82ea1dcb25af1d82a
+p
+@zuber/src/main/java/com/bbc/zuber/service/RideCancelService.java,6\d\6d156b391398189b9e96b9b152e48c5d0b9b3f41
+n
+>zuber/src/main/java/com/bbc/zuber/service/RideInfoService.java,d\2\d24f839f566a52f5dfdb62936e7eefaad359aac5

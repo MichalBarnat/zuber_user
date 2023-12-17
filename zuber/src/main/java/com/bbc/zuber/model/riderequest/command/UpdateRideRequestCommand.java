@@ -1,14 +1,8 @@
 package com.bbc.zuber.model.riderequest.command;
 
-import com.bbc.zuber.model.riderequest.enums.Size;
-import com.bbc.zuber.model.riderequest.enums.Type;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.time.LocalDateTime;
+import com.bbc.zuber.model.riderequest.enums.RideRequestSize;
+import com.bbc.zuber.model.riderequest.enums.RideRequestType;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,7 +13,7 @@ public class UpdateRideRequestCommand {
 
     private String pickUpLocation;
     private String dropOffLocation;
-    private Type type;
-    private Size size;
-    private LocalDateTime date;
+    private RideRequestType type;
+    private RideRequestSize size;
+    private String date;
 }
