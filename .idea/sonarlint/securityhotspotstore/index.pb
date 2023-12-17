@@ -31,8 +31,6 @@ p
 @zuber/src/main/java/com/bbc/zuber/repository/UserRepository.java,5\7\573da69a4e13b3a007aeabc5c9786ee91e2f13eb
 k
 ;zuber/src/main/java/com/bbc/zuber/model/user/enums/Sex.java,b\b\bb7982b8e3ad28aeec873ef5478fe0a1a6aa8f44
-{
-Kzuber/src/main/java/com/bbc/zuber/model/user/command/UpdateUserCommand.java,8\8\888f3f95f8cf990812c1e0b5363295364923f082
 q
 Azuber/src/main/java/com/bbc/zuber/service/RideRequestService.java,2\a\2a6959812c6de11f33040bbb8b77ac20a45034e4
 j
@@ -65,8 +63,6 @@ w
 Gzuber/src/main/java/com/bbc/zuber/service/FundsAvailabilityService.java,b\5\b5a1d9deea00e896f4b318295119cb175c52c3d9
 „
 Tzuber/src/main/java/com/bbc/zuber/mapping/user/CreateUserCommandToUserConverter.java,d\3\d318d08a304f9d26325d0db74060e87369a3139a
-{
-Kzuber/src/main/java/com/bbc/zuber/model/user/UserAggregateViewSnapshot.java,b\1\b1b2c5f31b73dcde426bf7d82ea1dcb25af1d82a
 p
 @zuber/src/main/java/com/bbc/zuber/service/RideCancelService.java,6\d\6d156b391398189b9e96b9b152e48c5d0b9b3f41
 n

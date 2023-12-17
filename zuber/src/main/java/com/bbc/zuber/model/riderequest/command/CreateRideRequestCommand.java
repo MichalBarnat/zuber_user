@@ -2,13 +2,14 @@ package com.bbc.zuber.model.riderequest.command;
 
 import com.bbc.zuber.model.riderequest.enums.RideRequestSize;
 import com.bbc.zuber.model.riderequest.enums.RideRequestType;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.time.LocalDate;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,8 +26,7 @@ public class CreateRideRequestCommand {
     private RideRequestType type;
     @NotNull(message = "SIZE_NOT_NULL")
     private RideRequestSize size;
-    // walidacja dla daty jak polem bedzie LocalDateTime
-    // @Future(message = "DATE_CANNOT_BE_PAST_OR_PRESENT")
-    // @NotNull(message = "DATE_NOT_NULL")
-    private String date;
+    @FutureOrPresent(message = "DATE_MUST_BE_PRESENT_OR_FUTURE")
+    @NotNull(message = "DATE_NOT_NULL")
+    private LocalDate date;
 }

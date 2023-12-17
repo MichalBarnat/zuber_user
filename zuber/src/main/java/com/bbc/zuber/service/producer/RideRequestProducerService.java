@@ -33,3 +33,5 @@ public class RideRequestProducerService {
         }
     }
 }
+
+//todo przeniesc do klasy KafkaProducerService i tam obsłuzyc wszystkie wysyłania na osobne tematy

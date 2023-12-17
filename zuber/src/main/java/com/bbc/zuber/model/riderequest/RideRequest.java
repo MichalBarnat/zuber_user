@@ -1,21 +1,14 @@
 package com.bbc.zuber.model.riderequest;
-import com.bbc.zuber.model.riderequest.enums.Size;
-import com.bbc.zuber.model.riderequest.enums.Type;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.bbc.zuber.model.riderequest.enums.RideRequestSize;
+import com.bbc.zuber.model.riderequest.enums.RideRequestType;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
-
-import static jakarta.persistence.EnumType.STRING;
-import static jakarta.persistence.GenerationType.AUTO;
 
 @Entity(name = "ride_requests")
 @Data
@@ -23,9 +16,9 @@ import static jakarta.persistence.GenerationType.AUTO;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RideRequest {
-
     @Id
-    @GeneratedValue(strategy = AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ride_requests_seq")
+    @SequenceGenerator(name = "ride_requests_seq", sequenceName = "ride_requests_seq", allocationSize = 1)
     private Long id;
     private UUID uuid;
     private UUID userUuid;
@@ -35,7 +28,7 @@ public class RideRequest {
     private RideRequestType type;
     @Enumerated(EnumType.STRING)
     private RideRequestSize size;
-    private String date;
+    private LocalDate date;
 
     //todo zmienic date na localdate
 }

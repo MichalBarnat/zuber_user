@@ -18,7 +18,11 @@
             <column name="balance" type="DECIMAL(19, 2)"/>
         </createTable>
     </changeSet>
-    <changeSet id="2" author="User2">
+
+    <changeSet id="2" author="michal">
+        <createSequence sequenceName="ride_requests_seq" incrementBy="1" startValue="1"/>
+    </changeSet>
+    <changeSet id="3" author="User2">
         <createTable tableName="ride_requests">
             <column name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true"/>
@@ -36,20 +40,37 @@
             <column name="date" type="TIMESTAMP"/>
         </createTable>
     </changeSet>
-    <changeSet id="3" author="User3">
+
+    <changeSet id="4" author="michal">
+        <createSequence sequenceName="ride_info_seq" incrementBy="1" startValue="1"/>
+    </changeSet>
+    <changeSet id="5" author="michal">
         <createTable tableName="ride_info">
             <column name="id" type="BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_ride_info"/>
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="ride_assignment_uuid" type="UUID">
+                <constraints nullable="false"/>
             </column>
             <column name="user_uuid" type="UUID">
-                <constraints nullable="false" unique="true"/>
+                <constraints nullable="false"/>
             </column>
-            <column name="driver_uuid" type="UUID"/>
+            <column name="driver_uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
             <column name="driver_name" type="VARCHAR(255)"/>
             <column name="driver_location" type="VARCHAR(255)"/>
+            <column name="pick_up_location" type="VARCHAR(255)"/>
+            <column name="drop_up_location" type="VARCHAR(255)"/>
+            <column name="order_time" type="TIMESTAMP"/>
+            <column name="estimated_arrival_time" type="DATE"/>
+            <column name="cost_of_ride" type="DECIMAL(10,2)"/>
+            <column name="time_to_arrival_in_minutes" type="VARCHAR(255)"/>
+            <column name="ride_length_in_kilometers" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet id="4" author="User4">
+
+    <changeSet id="6" author="michal">
         <createTable tableName="funds_availability">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true"/>

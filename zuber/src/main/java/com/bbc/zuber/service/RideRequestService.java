@@ -4,12 +4,14 @@ import com.bbc.zuber.exception.RideRequestNotFoundException;
 import com.bbc.zuber.exception.UserNotFoundException;
 import com.bbc.zuber.model.fundsavailability.FundsAvailability;
 import com.bbc.zuber.model.riderequest.RideRequest;
+import com.bbc.zuber.model.riderequest.dto.RideRequestDto;
 import com.bbc.zuber.model.riderequest.response.RideRequestResponse;
 import com.bbc.zuber.model.user.User;
 import com.bbc.zuber.repository.RideRequestRepository;
 import com.bbc.zuber.repository.UserRepository;
 import com.bbc.zuber.service.producer.RideRequestProducerService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,7 +28,8 @@ public class RideRequestService {
     private final RideRequestRepository rideRequestRepository;
     private final UserRepository userRepository;
     private final FundsAvailabilityService fundsAvailabilityService;
-    private final RideRequestProducerService producerService;
+    private final RideRequestProducerService rideRequestProducerService;
+    private final ModelMapper modelMapper;
 
     @Transactional(readOnly = true)
     public RideRequest getRideRequest(long id) {
@@ -34,43 +37,52 @@ public class RideRequestService {
                 .orElseThrow(() -> new RideRequestNotFoundException(id));
     }
 
-    @Transactional
-    public RideRequestResponse createRideRequest(RideRequest rideRequest, long id) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException(id));
+    public RideRequestResponse createRideRequestResponse(RideRequest rideRequest, long userId) {
+        RideRequestDto dto = modelMapper.map(rideRequest, RideRequestDto.class);
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException(userId));
 
-        UUID requestUuid = UUID.randomUUID();
+        UUID fundsRequestUuid = UUID.randomUUID();
         FundsAvailability fundsAvailability = FundsAvailability.builder()
-                .uuid(requestUuid)
+                .uuid(fundsRequestUuid)
                 .userUuid(user.getUuid())
                 .pickUpLocation(rideRequest.getPickUpLocation())
                 .dropOffLocation(rideRequest.getDropOffLocation())
-                .fundsAvailable(false)
                 .build();
 
         fundsAvailabilityService.save(fundsAvailability);
 
-        producerService.sendUserFundsAvailability(fundsAvailability);
+        rideRequestProducerService.sendUserFundsAvailability(fundsAvailability);
 
-        if (fundsAvailabilityService.findByUuid(requestUuid).getFundsAvailable() == null) {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        if (fundsAvailabilityService.findByUuid(fundsRequestUuid).getFundsAvailable() == null) {
             return RideRequestResponse.builder()
-                    .message("Timeout reached waiting for funds availability!")
+                    .message("Timeout reached waiting for funds availability or null.")
                     .status(REQUEST_TIMEOUT)
+                    .rideRequestDto(dto)
                     .build();
         }
 
-        if (!fundsAvailabilityService.findByUuid(requestUuid).getFundsAvailable()) {
+        if (!fundsAvailabilityService.findByUuid(fundsRequestUuid).getFundsAvailable()) {
             return RideRequestResponse.builder()
                     .message("User doesn't have enough funds for this ride!")
                     .status(FORBIDDEN)
+                    .rideRequestDto(dto)
                     .build();
         }
 
         RideRequest savedRideRequest = rideRequestRepository.save(rideRequest);
-        producerService.sendRideRequest(savedRideRequest);
+        rideRequestProducerService.sendRideRequest(savedRideRequest);
+        dto = modelMapper.map(rideRequest, RideRequestDto.class);
         return RideRequestResponse.builder()
                 .message("Ride request created successfully!")
                 .status(CREATED)
+                .rideRequestDto(dto)
                 .build();
     }
 

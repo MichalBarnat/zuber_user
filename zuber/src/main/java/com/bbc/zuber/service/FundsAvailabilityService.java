@@ -42,10 +42,8 @@ public class FundsAvailabilityService {
 
     @Transactional
     public void setFundsAvailability(UUID uuid, boolean available) {
-        FundsAvailability fundsAvailability = fundsAvailabilityRepository.findByUuid(uuid)
-                .orElseThrow(() -> new FundsAvailabilityUuidNotFound(uuid));
-
+        FundsAvailability fundsAvailability = findByUuid(uuid);
         fundsAvailability.setFundsAvailable(available);
-        fundsAvailabilityRepository.save(fundsAvailability);
+        save(fundsAvailability);
     }
 }
