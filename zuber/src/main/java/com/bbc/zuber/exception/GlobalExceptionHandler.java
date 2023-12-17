@@ -37,6 +37,21 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler
+    public ResponseEntity<ErrorMessage> userUuidFoundExceptionHandler(UserUuidNotFoundException ex, HttpServletRequest request) {
+        return createErrorResponse(ex, request, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorMessage> fundsAvailabilityFoundExceptionHandler(FundsAvailabilityNotFound ex, HttpServletRequest request) {
+        return createErrorResponse(ex, request, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorMessage> fundsAvailabilityUuidFoundExceptionHandler(FundsAvailabilityUuidNotFound ex, HttpServletRequest request) {
+        return createErrorResponse(ex, request, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler
     public ResponseEntity<List<ValidationErrorDto>> methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException ex) {
         return ResponseEntity.badRequest().body(
                 ex.getFieldErrors().stream()

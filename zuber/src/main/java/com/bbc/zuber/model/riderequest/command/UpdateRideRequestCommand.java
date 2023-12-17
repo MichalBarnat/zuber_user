@@ -10,6 +10,7 @@ import lombok.*;
 @Setter
 @Builder
 public class UpdateRideRequestCommand {
+
     private String pickUpLocation;
     private String dropOffLocation;
     private RideRequestType type;

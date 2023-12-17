@@ -6,17 +6,18 @@ import jakarta.validation.constraints.Email;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Builder
-public class UpdateUserCommand {
+public class UpdateUserPartiallyCommand {
 
     private String name;
     private String surname;
-    private String dob;
+    private LocalDate dob;
     @UniqueEmail(message = "GIVEN_EMAIL_EXISTS")
     @Email(message = "INCORRECT_EMAIL_FORMAT")
     private String email;

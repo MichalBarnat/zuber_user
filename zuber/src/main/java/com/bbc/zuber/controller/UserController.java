@@ -2,18 +2,30 @@ package com.bbc.zuber.controller;
 
 import com.bbc.zuber.model.user.User;
 import com.bbc.zuber.model.user.command.CreateUserCommand;
-import com.bbc.zuber.model.user.command.UpdateUserCommand;
+import com.bbc.zuber.model.user.command.UpdateUserPartiallyCommand;
 import com.bbc.zuber.model.user.dto.UserDto;
+import com.bbc.zuber.model.user.response.UserResponse;
 import com.bbc.zuber.service.UserService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.NO_CONTENT;
+import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequestMapping("/api/users")
@@ -23,38 +35,37 @@ public class UserController {
 
     private final UserService userService;
     private final ModelMapper modelMapper;
-    private final KafkaTemplate<String, Object> kafkaTemplate;
-    private final ObjectMapper objectMapper;
 
     @GetMapping("/{id}")
-    public User getUser(@PathVariable Long id) {
-        return userService.findById(id);
+    public ResponseEntity<UserDto> getUser(@PathVariable Long id) {
+        UserDto dto = modelMapper.map(userService.findById(id), UserDto.class);
+        return new ResponseEntity<>(dto, OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<UserDto>> findAll(@PageableDefault Pageable pageable) {
+        Page<UserDto> dtos = userService.findAll(pageable)
+                .map(user -> modelMapper.map(user, UserDto.class));
+        return new ResponseEntity<>(dtos, OK);
     }
 
     @PostMapping
-    public ResponseEntity<UserDto> save(@RequestBody @Valid CreateUserCommand command) throws JsonProcessingException {
-        User userToSave = modelMapper.map(command, User.class);
-        User savedUser = userService.save(userToSave);
-        String userJson = objectMapper.writeValueAsString(savedUser);
-        kafkaTemplate.send("user-registration", userJson);
-        return ResponseEntity.ok(modelMapper.map(savedUser, UserDto.class));
+    public ResponseEntity<UserDto> save(@RequestBody @Valid CreateUserCommand command) {
+        User user = modelMapper.map(command, User.class);
+        UserDto dto = modelMapper.map(userService.save(user), UserDto.class);
+        return new ResponseEntity<>(dto, CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        userService.deleteById(id);
-        kafkaTemplate.send("user-deleted", getUser(id).getUuid());
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<UserResponse> delete(@PathVariable Long id) {
+        UserResponse response = userService.deleteById(id);
+        return new ResponseEntity<>(response, NO_CONTENT);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<UserDto> edit(@PathVariable Long id, @RequestBody @Valid UpdateUserCommand command) throws JsonProcessingException {
-        User userToEdit = modelMapper.map(command, User.class);
-        userToEdit.setId(id);
-        User editedUser = userService.edit(userToEdit);
-        String editedUserJson = objectMapper.writeValueAsString(editedUser);
-        kafkaTemplate.send("user-edited", editedUserJson);
-        return ResponseEntity.ok(modelMapper.map(editedUser, UserDto.class));
+    @PatchMapping("/{id}")
+    public ResponseEntity<UserDto> editPartially(@PathVariable Long id, @RequestBody @Valid UpdateUserPartiallyCommand command) {
+        User user = userService.edit(id, command);
+        UserDto dto = modelMapper.map(user, UserDto.class);
+        return new ResponseEntity<>(dto, OK);
     }
-
 }

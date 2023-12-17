@@ -1,9 +1,10 @@
 package com.bbc.zuber.exception;
 
-public class RideRequestNotFoundException extends RuntimeException{
-    private Long id;
+public class RideRequestNotFoundException extends RuntimeException {
 
-    public RideRequestNotFoundException(Long id) {
-        this.id = id;
+    private static final String ERROR_MESSAGE = "Ride request with id: %d not found!";
+
+    public RideRequestNotFoundException(long id) {
+        super(String.format(ERROR_MESSAGE, id));
     }
 }

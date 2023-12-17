@@ -20,6 +20,7 @@ import java.util.UUID;
 @Component
 @RequiredArgsConstructor
 public class KafkaListeners {
+
     private final RideInfoService rideInfoService;
     private final ObjectMapper objectMapper;
     private final FundsAvailabilityService fundsAvailabilityService;
@@ -49,8 +50,7 @@ public class KafkaListeners {
 
         fundsAvailabilityService.setFundsAvailability(uuid, canAfford);
 
-        logger.info("FUND AVAILABILITY ID: {}",uuid);
-        logger.info("COST OF THAT RIDE WILL BE : {}",cost);
+        logger.info("FUND AVAILABILITY ID: {}", uuid);
+        logger.info("COST OF THAT RIDE WILL BE : {}", cost);
     }
-
 }

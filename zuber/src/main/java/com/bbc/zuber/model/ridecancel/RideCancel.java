@@ -17,10 +17,10 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RideCancel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private UUID rideAssignmentId;
     private Boolean cancel;
-
 }

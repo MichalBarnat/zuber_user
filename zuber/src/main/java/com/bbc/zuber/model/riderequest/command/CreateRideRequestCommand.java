@@ -4,7 +4,11 @@ import com.bbc.zuber.model.riderequest.enums.RideRequestSize;
 import com.bbc.zuber.model.riderequest.enums.RideRequestType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -12,6 +16,7 @@ import lombok.*;
 @Setter
 @Builder
 public class CreateRideRequestCommand {
+
     @NotBlank(message = "PICK_UP_LOCATION_NOT_BLANK")
     private String pickUpLocation;
     @NotBlank(message = "DROP_OFF_LOCATION_NOT_BLANK")

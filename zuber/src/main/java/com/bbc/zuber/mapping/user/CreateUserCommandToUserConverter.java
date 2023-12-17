@@ -6,7 +6,6 @@ import org.modelmapper.Converter;
 import org.modelmapper.spi.MappingContext;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.UUID;
 
 @Service
@@ -20,7 +19,7 @@ public class CreateUserCommandToUserConverter implements Converter<CreateUserCom
                 .uuid(UUID.randomUUID())
                 .name(command.getName())
                 .surname(command.getSurname())
-                .dob(LocalDate.parse(command.getDob()))
+                .dob(command.getDob())
                 .sex(command.getSex())
                 .email(command.getEmail())
                 .balance(command.getBalance())

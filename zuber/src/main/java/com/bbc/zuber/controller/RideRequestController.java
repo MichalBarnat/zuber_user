@@ -4,28 +4,18 @@ import com.bbc.zuber.model.fundsavailability.FundsAvailability;
 import com.bbc.zuber.model.riderequest.RideRequest;
 import com.bbc.zuber.model.riderequest.command.CreateRideRequestCommand;
 import com.bbc.zuber.model.riderequest.dto.RideRequestDto;
-import com.bbc.zuber.service.FundsAvailabilityService;
 import com.bbc.zuber.service.RideRequestService;
-import com.bbc.zuber.service.UserService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/rideRequests")
@@ -35,15 +25,11 @@ public class RideRequestController {
 
     private final RideRequestService rideRequestService;
     private final ModelMapper modelMapper;
-    private final UserService userService;
-    private final ObjectMapper objectMapper;
-    private final KafkaTemplate<String, Object> kafkaTemplate;
-    private final FundsAvailabilityService fundsAvailabilityService;
-    private final Logger logger = LoggerFactory.getLogger(RideRequestController.class);
 
     @GetMapping("/{id}")
-    public ResponseEntity<RideRequest> getRideRequest(@PathVariable Long id) {
-        return ResponseEntity.ok(rideRequestService.getRideRequest(id));
+    public ResponseEntity<RideRequestDto> getRideRequest(@PathVariable Long id) {
+        RideRequestDto dto = modelMapper.map(rideRequestService.getRideRequest(id), RideRequestDto.class);
+        return new ResponseEntity<>(dto, OK);
     }
 
     @PostMapping("/{id}")
@@ -86,5 +72,4 @@ public class RideRequestController {
 
         return ResponseEntity.ok(modelMapper.map(savedRideRequest, RideRequestDto.class));
     }
-
 }
