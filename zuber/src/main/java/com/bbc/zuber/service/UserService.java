@@ -2,11 +2,11 @@ package com.bbc.zuber.service;
 
 import com.bbc.zuber.exception.UserNotFoundException;
 import com.bbc.zuber.exception.UserUuidNotFoundException;
+import com.bbc.zuber.kafka.KafkaProducerService;
 import com.bbc.zuber.model.user.User;
 import com.bbc.zuber.model.user.command.UpdateUserPartiallyCommand;
 import com.bbc.zuber.model.user.response.UserResponse;
 import com.bbc.zuber.repository.UserRepository;
-import com.bbc.zuber.service.producer.UserProducerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,7 +21,7 @@ import java.util.UUID;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final UserProducerService producerService;
+    private final KafkaProducerService producerService;
 
     @Transactional(readOnly = true)
     public User findById(Long id) {

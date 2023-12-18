@@ -1,12 +1,9 @@
 package com.bbc.zuber.service;
 
+import com.bbc.zuber.kafka.KafkaProducerService;
 import com.bbc.zuber.model.ridecancel.RideCancel;
 import com.bbc.zuber.repository.RideCancelRepository;
-import com.bbc.zuber.service.producer.RideCancelProducerService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class RideCancelService {
 
     private final RideCancelRepository rideCancelRepository;
-    private final RideCancelProducerService producerService;
+    private final KafkaProducerService producerService;
 
     @Transactional
     public RideCancel save(RideCancel rideCancel) {

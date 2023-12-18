@@ -2,6 +2,7 @@ package com.bbc.zuber.service;
 
 import com.bbc.zuber.exception.RideRequestNotFoundException;
 import com.bbc.zuber.exception.UserNotFoundException;
+import com.bbc.zuber.kafka.KafkaProducerService;
 import com.bbc.zuber.model.fundsavailability.FundsAvailability;
 import com.bbc.zuber.model.riderequest.RideRequest;
 import com.bbc.zuber.model.riderequest.dto.RideRequestDto;
@@ -9,7 +10,6 @@ import com.bbc.zuber.model.riderequest.response.RideRequestResponse;
 import com.bbc.zuber.model.user.User;
 import com.bbc.zuber.repository.RideRequestRepository;
 import com.bbc.zuber.repository.UserRepository;
-import com.bbc.zuber.service.producer.RideRequestProducerService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -28,7 +28,7 @@ public class RideRequestService {
     private final RideRequestRepository rideRequestRepository;
     private final UserRepository userRepository;
     private final FundsAvailabilityService fundsAvailabilityService;
-    private final RideRequestProducerService rideRequestProducerService;
+    private final KafkaProducerService producerService;
     private final ModelMapper modelMapper;
 
     @Transactional(readOnly = true)
@@ -52,7 +52,7 @@ public class RideRequestService {
 
         fundsAvailabilityService.save(fundsAvailability);
 
-        rideRequestProducerService.sendUserFundsAvailability(fundsAvailability);
+        producerService.sendUserFundsAvailability(fundsAvailability);
 
         try {
             Thread.sleep(2000);
@@ -77,7 +77,7 @@ public class RideRequestService {
         }
 
         RideRequest savedRideRequest = rideRequestRepository.save(rideRequest);
-        rideRequestProducerService.sendRideRequest(savedRideRequest);
+        producerService.sendRideRequest(savedRideRequest);
         dto = modelMapper.map(rideRequest, RideRequestDto.class);
         return RideRequestResponse.builder()
                 .message("Ride request created successfully!")
