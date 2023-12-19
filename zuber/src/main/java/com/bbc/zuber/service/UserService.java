@@ -78,4 +78,7 @@ public class UserService {
         producerService.sendEditedUser(editedUser);
         return editedUser;
     }
+
+//    @Transactional
+//    public void payForRide()
 }
