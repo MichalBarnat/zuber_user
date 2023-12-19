@@ -29,6 +29,4 @@ public class RideRequest {
     @Enumerated(EnumType.STRING)
     private RideRequestSize size;
     private LocalDate date;
-
-    //todo zmienic date na localdate
 }

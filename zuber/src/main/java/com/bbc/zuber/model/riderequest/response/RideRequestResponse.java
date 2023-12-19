@@ -14,7 +14,6 @@ import org.springframework.http.HttpStatus;
 @Getter
 @Setter
 public class RideRequestResponse {
-
     private String message;
     private HttpStatus status;
     private RideRequestDto rideRequestDto;

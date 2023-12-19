@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 @Value
 @Builder
 public class ErrorMessage {
-
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     LocalDateTime timestamp;
     int code;

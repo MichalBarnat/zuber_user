@@ -12,7 +12,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ValidationErrorDto {
-
     private String code;
     private String field;
 }

@@ -42,12 +42,12 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler
-    public ResponseEntity<ErrorMessage> fundsAvailabilityFoundExceptionHandler(FundsAvailabilityNotFound ex, HttpServletRequest request) {
+    public ResponseEntity<ErrorMessage> fundsAvailabilityFoundExceptionHandler(FundsAvailabilityNotFoundException ex, HttpServletRequest request) {
         return createErrorResponse(ex, request, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler
-    public ResponseEntity<ErrorMessage> fundsAvailabilityUuidFoundExceptionHandler(FundsAvailabilityUuidNotFound ex, HttpServletRequest request) {
+    public ResponseEntity<ErrorMessage> fundsAvailabilityUuidFoundExceptionHandler(FundsAvailabilityUuidNotFoundException ex, HttpServletRequest request) {
         return createErrorResponse(ex, request, HttpStatus.NOT_FOUND);
     }
 

@@ -48,11 +48,6 @@ public class KafkaListeners {
 
         boolean canAfford = user.getBalance().compareTo(cost) > 0;
 
-        if(fundsAvailabilityService.findByUuid(uuid).equals(null)) {
-            logger.info("TUTAJ JEST LIPA!!!");
-        }
-
-
         fundsAvailabilityService.setFundsAvailability(uuid, canAfford);
 
         logger.info("FUNDS AVAILABILITY ID: {}", uuid);

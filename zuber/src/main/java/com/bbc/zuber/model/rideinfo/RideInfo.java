@@ -16,7 +16,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RideInfo {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ride_info_seq")
     @SequenceGenerator(name = "ride_info_seq", sequenceName = "ride_info_seq", allocationSize = 1)

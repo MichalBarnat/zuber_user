@@ -37,7 +37,7 @@ public class RideRequestController {
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<?> save(@RequestBody @Valid CreateRideRequestCommand command, @PathVariable Long id) {
+    public ResponseEntity<RideRequestResponse> save(@RequestBody @Valid CreateRideRequestCommand command, @PathVariable Long id) {
         RideRequest rideRequest = modelMapper.map(command, RideRequest.class);
         rideRequest.setUserUuid(userService.findById(id).getUuid());
         RideRequestResponse response = rideRequestService.createRideRequestResponse(rideRequest, id);

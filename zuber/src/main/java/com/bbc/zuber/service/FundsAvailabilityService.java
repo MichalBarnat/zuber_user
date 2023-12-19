@@ -1,7 +1,7 @@
 package com.bbc.zuber.service;
 
-import com.bbc.zuber.exception.FundsAvailabilityNotFound;
-import com.bbc.zuber.exception.FundsAvailabilityUuidNotFound;
+import com.bbc.zuber.exception.FundsAvailabilityNotFoundException;
+import com.bbc.zuber.exception.FundsAvailabilityUuidNotFoundException;
 import com.bbc.zuber.model.fundsavailability.FundsAvailability;
 import com.bbc.zuber.repository.FundsAvailabilityRepository;
 import lombok.RequiredArgsConstructor;
@@ -31,13 +31,13 @@ public class FundsAvailabilityService {
     @Transactional(readOnly = true)
     public FundsAvailability findById(Long id) {
         return fundsAvailabilityRepository.findById(id)
-                .orElseThrow(() -> new FundsAvailabilityNotFound(id));
+                .orElseThrow(() -> new FundsAvailabilityNotFoundException(id));
     }
 
     @Transactional(readOnly = true)
     public FundsAvailability findByUuid(UUID uuid) {
         return fundsAvailabilityRepository.findByUuid(uuid)
-                .orElseThrow(() -> new FundsAvailabilityUuidNotFound(uuid));
+                .orElseThrow(() -> new FundsAvailabilityUuidNotFoundException(uuid));
     }
 
     @Transactional
