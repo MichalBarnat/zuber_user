@@ -1,5 +1,6 @@
 package com.bbc.zuber.kafka;
 
+import com.bbc.zuber.exception.KafkaMessageProcessingException;
 import com.bbc.zuber.model.fundsavailability.FundsAvailability;
 import com.bbc.zuber.model.ridecancel.RideCancel;
 import com.bbc.zuber.model.riderequest.RideRequest;
@@ -24,7 +25,7 @@ public class KafkaProducerService {
             String rideCancelJson = objectMapper.writeValueAsString(rideCancelSaved);
             kafkaTemplate.send("ride-cancel", rideCancelJson);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            throw new KafkaMessageProcessingException("Problem with sending to topic ride-cancel");
         }
     }
 
@@ -33,7 +34,7 @@ public class KafkaProducerService {
             String fundsAvailabilityJson = objectMapper.writeValueAsString(fundsAvailability);
             kafkaTemplate.send("user-funds-availability", fundsAvailabilityJson);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            throw new KafkaMessageProcessingException("Problem with sending to topic user-funds-availability");
         }
     }
 
@@ -42,7 +43,7 @@ public class KafkaProducerService {
             String rideRequestJson = objectMapper.writeValueAsString(savedRideRequest);
             kafkaTemplate.send("ride-request", rideRequestJson);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            throw new KafkaMessageProcessingException("Problem with sending to topic ride-request");
         }
     }
 
@@ -51,7 +52,7 @@ public class KafkaProducerService {
             String userJson = objectMapper.writeValueAsString(savedUser);
             kafkaTemplate.send("user-registration", userJson);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            throw new KafkaMessageProcessingException("Problem with sending to topic user-registration");
         }
     }
 
@@ -64,7 +65,7 @@ public class KafkaProducerService {
             String editedUserJson = objectMapper.writeValueAsString(editedUser);
             kafkaTemplate.send("user-edited", editedUserJson);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            throw new KafkaMessageProcessingException("Problem with sending to topic user-edited");
         }
     }
 }

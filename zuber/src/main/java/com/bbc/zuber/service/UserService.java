@@ -1,5 +1,6 @@
 package com.bbc.zuber.service;
 
+import com.bbc.zuber.exception.InsufficientFundsException;
 import com.bbc.zuber.exception.UserNotFoundException;
 import com.bbc.zuber.exception.UserUuidNotFoundException;
 import com.bbc.zuber.kafka.KafkaProducerService;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -79,6 +81,16 @@ public class UserService {
         return editedUser;
     }
 
-//    @Transactional
-//    public void payForRide()
+    @Transactional
+    public void payForRide(UUID userUuid, BigDecimal amount) {
+        User user = findByUuid(userUuid);
+        BigDecimal newBalance = user.getBalance().subtract(amount);
+
+        if(newBalance.compareTo(BigDecimal.ZERO) < 0) {
+            throw new InsufficientFundsException(String.format("User with uuid: %s don't have enough money for that ride!", user.getUuid()));
+        }
+
+        user.setBalance(newBalance);
+        save(user);
+    }
 }

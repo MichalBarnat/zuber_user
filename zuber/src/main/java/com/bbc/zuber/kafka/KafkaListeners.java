@@ -15,6 +15,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.UUID;
 
 @Component
@@ -44,13 +45,16 @@ public class KafkaListeners {
         UUID uuid = UUID.fromString(jsonNode.get("uuid").asText());
         UUID userUuid = UUID.fromString(jsonNode.get("userUuid").asText());
         User user = userService.findByUuid(userUuid);
-        BigDecimal cost = BigDecimal.valueOf(jsonNode.get("cost").asDouble());
+        BigDecimal cost = BigDecimal
+                .valueOf(jsonNode.get("cost").asDouble())
+                .setScale(2, RoundingMode.HALF_UP);
 
         boolean canAfford = user.getBalance().compareTo(cost) > 0;
 
-        fundsAvailabilityService.setFundsAvailability(uuid, canAfford);
+        if(canAfford) {
+            userService.payForRide(userUuid, cost);
+        }
 
-        logger.info("FUNDS AVAILABILITY ID: {}", uuid);
-        logger.info("COST OF THAT RIDE WILL BE : {}", cost);
+        fundsAvailabilityService.setFundsAvailability(uuid, canAfford);
     }
 }

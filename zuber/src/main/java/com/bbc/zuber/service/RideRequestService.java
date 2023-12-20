@@ -26,7 +26,7 @@ import static org.springframework.http.HttpStatus.REQUEST_TIMEOUT;
 public class RideRequestService {
 
     private final RideRequestRepository rideRequestRepository;
-    private final UserRepository userRepository;
+    private final UserService userService;
     private final FundsAvailabilityService fundsAvailabilityService;
     private final KafkaProducerService producerService;
     private final ModelMapper modelMapper;
@@ -37,10 +37,14 @@ public class RideRequestService {
                 .orElseThrow(() -> new RideRequestNotFoundException(id));
     }
 
+    @Transactional
+    public RideRequest save(RideRequest rideRequest) {
+        return rideRequestRepository.save(rideRequest);
+    }
+
     public RideRequestResponse createRideRequestResponse(RideRequest rideRequest, long userId) {
         RideRequestDto dto = modelMapper.map(rideRequest, RideRequestDto.class);
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException(userId));
+        User user = userService.findById(userId);
 
         UUID fundsRequestUuid = UUID.randomUUID();
         FundsAvailability fundsAvailability = FundsAvailability.builder()
@@ -54,10 +58,14 @@ public class RideRequestService {
 
         producerService.sendUserFundsAvailability(fundsAvailability);
 
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        for (int i = 0; i < 3; i++) {
+            if (fundsAvailabilityService.findByUuid(fundsRequestUuid).getFundsAvailable() == null) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
 
         if (fundsAvailabilityService.findByUuid(fundsRequestUuid).getFundsAvailable() == null) {
@@ -76,8 +84,9 @@ public class RideRequestService {
                     .build();
         }
 
-        RideRequest savedRideRequest = rideRequestRepository.save(rideRequest);
+        RideRequest savedRideRequest = save(rideRequest);
         producerService.sendRideRequest(savedRideRequest);
+
         dto = modelMapper.map(rideRequest, RideRequestDto.class);
         return RideRequestResponse.builder()
                 .message("Ride request created successfully!")
@@ -92,15 +101,5 @@ public class RideRequestService {
         // Anulujemy przejazd bez opłaty jeśli nie złapał go jakiś kierowca i jest do nas w drodze
         // oraz taki gdzie nie płaci użytkownik nic, gdy żaden z kierowców go nie zaakceptował.
         // Tu jest ważna wymiana informacji na temat statusu przejazdu.
-    }
-
-    public RideRequest getRideRequestStatus() {
-        return null;
-        // Sprawdzamy czy przejazd złapał jakiś kierowca.
-    }
-
-    public RideRequest getRideRequestDetails() {
-        return null;
-        // Tu wyświetlimy wszystkie szczegóły.
     }
 }
