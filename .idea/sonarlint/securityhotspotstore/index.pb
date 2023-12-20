@@ -89,3 +89,17 @@ Gzuber/src/main/java/com/bbc/zuber/model/user/response/UserResponse.java,0\7\07
 Pzuber/src/main/java/com/bbc/zuber/model/user/view/UserAggregateViewSnapshot.java,3\f\3fa9baad451c837154c133cb6b99110c5c96507d
 „
 Tzuber/src/main/java/com/bbc/zuber/model/user/command/UpdateUserPartiallyCommand.java,1\4\149576e912dfa3cd480db0dab9ff97a0c2b30378
+}
+Mzuber/src/main/java/com/bbc/zuber/controller/FundsAvailabilityController.java,b\e\be075a84b950bdb318b451d9c9aadc1e429cff9e
+z
+Jzuber/src/main/java/com/bbc/zuber/exception/UserUuidNotFoundException.java,0\8\089063cd9b1314b310e0e2b3f27ed62466afb5f5
+ƒ
+Szuber/src/main/java/com/bbc/zuber/exception/FundsAvailabilityNotFoundException.java,2\9\29dbcc4b9837471ac9963c8d4da1466f7f2e6e16
+w
+Gzuber/src/main/java/com/bbc/zuber/exception/dto/ValidationErrorDto.java,6\e\6ee62da144b0afc2b4960470ab061fe5d3b7122b
+w
+Gzuber/src/main/java/com/bbc/zuber/exception/GlobalExceptionHandler.java,4\4\444339c4c26b1fd0030c329a675c786bd11ffbe2
+m
+=zuber/src/main/java/com/bbc/zuber/exception/ErrorMessage.java,6\b\6be758705411694253a15ebcbeb5c97a0e8392f3
+‡
+Wzuber/src/main/java/com/bbc/zuber/exception/FundsAvailabilityUuidNotFoundException.java,9\1\917c2b75e9cb38a1bdfcf14ab399c8bdcda4ce77
