@@ -15,7 +15,7 @@ import java.util.UUID;
 public class RideRequestDto {
     Long id;
     UUID uuid;
-    UUID userId;
+    UUID userUuid;
     String pickUpLocation;
     String dropOffLocation;
     RideRequestType type;

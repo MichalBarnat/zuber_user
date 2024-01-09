@@ -7,7 +7,7 @@ import org.modelmapper.spi.MappingContext;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UpdateUserCommandToUserConverter implements Converter<UpdateUserPartiallyCommand, User> {
+public class UpdateUserPartiallyCommandToUserConverter implements Converter<UpdateUserPartiallyCommand, User> {
 
     @Override
     public User convert(MappingContext<UpdateUserPartiallyCommand, User> mappingContext) {

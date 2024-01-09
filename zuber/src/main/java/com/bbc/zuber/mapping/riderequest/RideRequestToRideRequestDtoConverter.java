@@ -18,7 +18,7 @@ public class RideRequestToRideRequestDtoConverter implements Converter<RideReque
         return RideRequestDto.builder()
                 .id(rideRequest.getId())
                 .uuid(UUID.randomUUID())
-                .userId(rideRequest.getUserUuid())
+                .userUuid(rideRequest.getUserUuid())
                 .pickUpLocation(rideRequest.getPickUpLocation())
                 .dropOffLocation(rideRequest.getDropOffLocation())
                 .type(rideRequest.getType())

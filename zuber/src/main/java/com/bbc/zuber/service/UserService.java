@@ -86,7 +86,7 @@ public class UserService {
         User user = findByUuid(userUuid);
         BigDecimal newBalance = user.getBalance().subtract(amount);
 
-        if(newBalance.compareTo(BigDecimal.ZERO) < 0) {
+        if (newBalance.compareTo(BigDecimal.ZERO) < 0) {
             throw new InsufficientFundsException(String.format("User with uuid: %s don't have enough money for that ride!", user.getUuid()));
         }
 

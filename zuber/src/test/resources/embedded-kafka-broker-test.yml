@@ -1,0 +1,15 @@
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+  embedded:
+    kafka:
+      broker:
+        id: 0
+        auto-startup: true
+      topics:
+        - ride-info
+        - funds-availability-response
+auto:
+  create:
+    topics:
+      enable: false
