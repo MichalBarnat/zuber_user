@@ -67,8 +67,6 @@ p
 @zuber/src/main/java/com/bbc/zuber/service/RideCancelService.java,6\d\6d156b391398189b9e96b9b152e48c5d0b9b3f41
 n
 >zuber/src/main/java/com/bbc/zuber/service/RideInfoService.java,d\2\d24f839f566a52f5dfdb62936e7eefaad359aac5
-{
-Kzuber/src/main/java/com/bbc/zuber/service/producer/UserProducerService.java,e\5\e53c77109d67540a22fa5372eef684f90915cf07
 ô
 izuber/src/main/java/com/bbc/zuber/mapping/riderequest/CreateRideRequestCommandToRideRequestConverter.java,1\b\1be3a0f2fc6ad2b1f0c4f2fdcef11d178594e1c6
 ô
@@ -77,10 +75,6 @@ izuber/src/main/java/com/bbc/zuber/mapping/riderequest/UpdateRideRequestCommandT
 Uzuber/src/main/java/com/bbc/zuber/model/riderequest/response/RideRequestResponse.java,f\e\fe8d83526ce0843da2a339d6a9a0aef5908ceb79
 è
 _zuber/src/main/java/com/bbc/zuber/mapping/riderequest/RideRequestToRideRequestDtoConverter.java,8\4\84568ae606f00f4422078fcb195a9380db6c44e1
-Ç
-Rzuber/src/main/java/com/bbc/zuber/service/producer/RideRequestProducerService.java,5\e\5ebaa3101a233d4ca6a5c49d3282ab3f0d145f0f
-Å
-Qzuber/src/main/java/com/bbc/zuber/service/producer/RideCancelProducerService.java,5\e\5e1819776cb533db7c6c9c867118172fcc397419
 q
 Azuber/src/main/java/com/bbc/zuber/kafka/KafkaProducerService.java,4\c\4cf288a5421cd4b9282786b27b20aa564a67498e
 w
@@ -103,3 +97,11 @@ m
 =zuber/src/main/java/com/bbc/zuber/exception/ErrorMessage.java,6\b\6be758705411694253a15ebcbeb5c97a0e8392f3
 á
 Wzuber/src/main/java/com/bbc/zuber/exception/FundsAvailabilityUuidNotFoundException.java,9\1\917c2b75e9cb38a1bdfcf14ab399c8bdcda4ce77
+{
+Kzuber/src/main/java/com/bbc/zuber/exception/InsufficientFundsException.java,e\8\e80a327c9a25e90c4e880465d5657a6b26bb2869
+Ä
+Pzuber/src/main/java/com/bbc/zuber/exception/KafkaMessageProcessingException.java,7\7\77bfed123cc0e3fe6ee806fd51ea0d86e5d6f35a
+l
+<zuber/src/main/java/com/bbc/zuber/model/message/Message.java,f\e\febf1b4845966bd0759769ee7880a6bf38fcb7f1
+p
+@zuber/src/main/java/com/bbc/zuber/controller/ChatController.java,d\3\d3cd2ae2682852908701c90f34c5da64efc53e18
