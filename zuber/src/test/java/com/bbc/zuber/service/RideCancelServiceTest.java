@@ -36,7 +36,7 @@ class RideCancelServiceTest {
         //Given
         RideCancel rideCancel = RideCancel.builder()
                 .id(1L)
-                .rideAssignmentId(UUID.randomUUID())
+                .rideAssignmentUuid(UUID.randomUUID())
                 .cancel(true)
                 .build();
 

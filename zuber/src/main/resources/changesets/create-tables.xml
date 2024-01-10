@@ -86,4 +86,20 @@
             <column name="funds_available" type="BOOLEAN"/>
         </createTable>
     </changeSet>
+
+    <changeSet id="7" author="michal">
+        <createSequence sequenceName="ride_cancel_seq" incrementBy="1" startValue="1"/>
+    </changeSet>
+    <changeSet id="8" author="michal">
+        <createTable tableName="ride_cancelled">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="ride_assignment_uuid" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
 </databaseChangeLog>

@@ -1,4 +1,4 @@
-package com.bbc.zuber.model.user.response;
+package com.bbc.zuber.model.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

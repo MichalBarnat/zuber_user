@@ -4,7 +4,7 @@ import com.bbc.zuber.model.user.User;
 import com.bbc.zuber.model.user.command.CreateUserCommand;
 import com.bbc.zuber.model.user.command.UpdateUserPartiallyCommand;
 import com.bbc.zuber.model.user.dto.UserDto;
-import com.bbc.zuber.model.user.response.UserResponse;
+import com.bbc.zuber.model.response.UserResponse;
 import com.bbc.zuber.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

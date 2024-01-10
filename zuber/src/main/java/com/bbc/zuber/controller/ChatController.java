@@ -1,7 +1,7 @@
 package com.bbc.zuber.controller;
 
 import com.bbc.zuber.model.message.Message;
-import com.bbc.zuber.model.user.response.UserResponse;
+import com.bbc.zuber.model.response.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;

@@ -6,7 +6,7 @@ import com.bbc.zuber.exception.UserUuidNotFoundException;
 import com.bbc.zuber.kafka.KafkaProducerService;
 import com.bbc.zuber.model.user.User;
 import com.bbc.zuber.model.user.command.UpdateUserPartiallyCommand;
-import com.bbc.zuber.model.user.response.UserResponse;
+import com.bbc.zuber.model.response.UserResponse;
 import com.bbc.zuber.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
