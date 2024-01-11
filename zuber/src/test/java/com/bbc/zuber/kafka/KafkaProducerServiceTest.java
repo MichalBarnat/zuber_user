@@ -55,13 +55,11 @@ class KafkaProducerServiceTest {
         RideCancel rideCancel = RideCancel.builder()
                 .id(1L)
                 .rideAssignmentUuid(UUID.randomUUID())
-                .cancel(true)
                 .build();
 
         String expectedJson = "{" +
                 "\"id\":" + rideCancel.getId() + "," +
                 "\"rideAssignmentId\":\"" + rideCancel.getRideAssignmentUuid() + "\"," +
-                "\"cancel\":" + rideCancel.getCancel() + "\"" +
                 "}";
 
         when(objectMapper.writeValueAsString(rideCancel))
@@ -211,7 +209,6 @@ class KafkaProducerServiceTest {
         RideCancel rideCancel = RideCancel.builder()
                 .id(1L)
                 .rideAssignmentUuid(UUID.randomUUID())
-                .cancel(true)
                 .build();
 
         when(objectMapper.writeValueAsString(rideCancel))

@@ -77,8 +77,6 @@ Uzuber/src/main/java/com/bbc/zuber/model/riderequest/response/RideRequestRespons
 _zuber/src/main/java/com/bbc/zuber/mapping/riderequest/RideRequestToRideRequestDtoConverter.java,8\4\84568ae606f00f4422078fcb195a9380db6c44e1
 q
 Azuber/src/main/java/com/bbc/zuber/kafka/KafkaProducerService.java,4\c\4cf288a5421cd4b9282786b27b20aa564a67498e
-w
-Gzuber/src/main/java/com/bbc/zuber/model/user/response/UserResponse.java,0\7\0716b52bc4a5c52f3830285714f1753fe5920bc0
 €
 Pzuber/src/main/java/com/bbc/zuber/model/user/view/UserAggregateViewSnapshot.java,3\f\3fa9baad451c837154c133cb6b99110c5c96507d
 „
@@ -105,3 +103,11 @@ l
 <zuber/src/main/java/com/bbc/zuber/model/message/Message.java,f\e\febf1b4845966bd0759769ee7880a6bf38fcb7f1
 p
 @zuber/src/main/java/com/bbc/zuber/controller/ChatController.java,d\3\d3cd2ae2682852908701c90f34c5da64efc53e18
+u
+Ezuber/src/test/java/com/bbc/zuber/kafka/KafkaProducerServiceTest.java,0\f\0fa5525260d309e1d94334792ba625fb7ddd0693
+v
+Fzuber/src/main/java/com/bbc/zuber/controller/RideCancelController.java,2\d\2da6971cd6d67d5a2d1402aa3da812101532cd1a
+t
+Dzuber/src/test/java/com/bbc/zuber/service/RideCancelServiceTest.java,a\d\ad1d54228b8d9c36a294b7830ae0883d904801ed
+r
+Bzuber/src/main/java/com/bbc/zuber/model/response/UserResponse.java,d\f\dfeb501326aad016de37ac2044354edf742071c5
