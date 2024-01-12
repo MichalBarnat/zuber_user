@@ -1,0 +1,6 @@
+id,uuid,user_uuid,pick_up_location,drop_off_location,type,size,date
+1,123e4567-e89b-12d3-a456-426614174091,123e4567-e89b-12d3-a456-426614174000,"Jęczydół 16, 73-108 Jęczydół","Szczecińska 15B, 73-108 Morzyczyn",STANDARD,SINGLE,"2024-12-01"
+2,123e4567-e89b-12d3-a456-426614174092,123e4567-e89b-12d3-a456-426614174002,"Zjazd 15a, 18-400 Łomża","Marianowo 7, 18-421 Marianowo",ECO,SINGLE,"2024-12-01"
+3,123e4567-e89b-12d3-a456-426614174093,123e4567-e89b-12d3-a456-426614174004,"Poznańska 99, 62-800 Kalisz","Popówek 6, 63-322 Popówek",PREMIUM,SINGLE,"2024-12-01"
+4,123e4567-e89b-12d3-a456-426614174094,123e4567-e89b-12d3-a456-426614174006,"Malownicza 16, 22-400 Zamość","Generała Władysława Sikorskiego 9, 22-400 Zamość",STANDARD,SINGLE,"2024-12-01"
+5,123e4567-e89b-12d3-a456-426614174095,123e4567-e89b-12d3-a456-426614174009,"Bolesława Krzywoustego 8, 73-110 Stargard","Gdyńska 28, 73-110 Stargard",ECO,GROUP,"2024-12-01"

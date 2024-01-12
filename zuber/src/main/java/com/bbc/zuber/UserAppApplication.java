@@ -20,11 +20,9 @@ public class UserAppApplication {
 	// prometheus
 	// kafdrop
 
-	//TODO 14.12.2023
+	// 14.12.2023
 	// czat
-	// obsluga zgloszen (pojedyncze wiadomosci czekajace na odpowiedz)
 	// piginacja, softdelete,
 	// wireMock
 	// widoki bazodanowe
-	// LOAD BALANCING
 }

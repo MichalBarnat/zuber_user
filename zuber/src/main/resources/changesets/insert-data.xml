@@ -27,4 +27,50 @@
             SELECT setval('users_seq', COALESCE((SELECT MAX(id)+1 FROM users), 1), false);
         </sql>
     </changeSet>
+
+    <changeSet id="4" author="michal">
+        <loadData encoding="UTF-8" file="changesets/data/ride_requests.csv" quotchar="&quot;" separator=","
+                  tableName="ride_requests">
+            <column header="id" name="id"/>
+            <column header="uuid" name="uuid"/>
+            <column header="userUuid" name="user_uuid"/>
+            <column header="pickUpLocation" name="pick_up_location"/>
+            <column header="dropOffLocation" name="drop_off_location"/>
+            <column header="type" name="type"/>
+            <column header="size" name="size"/>
+            <column header="date" name="date"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="5" author="michal">
+        <loadData encoding="UTF-8" file="changesets/data/funds_availability.csv" quotchar="&quot;" separator=","
+                  tableName="funds_availability">
+            <column header="id" name="id"/>
+            <column header="uuid" name="uuid"/>
+            <column header="userUuid" name="user_uuid"/>
+            <column header="pickUpLocation" name="pick_up_location"/>
+            <column header="dropOffLocation" name="drop_off_location"/>
+            <column header="fundsAvailable" name="funds_available" type="BOOLEAN"/>
+        </loadData>
+    </changeSet>
+
+    <changeSet id="6" author="michal">
+        <loadData encoding="UTF-8" file="changesets/data/ride_info.csv" quotchar="&quot;" separator=","
+                  tableName="ride_info">
+            <column header="id" name="id"/>
+            <column header="rideAssignmentUuid" name="ride_assignment_uuid"/>
+            <column header="userUuid" name="user_uuid"/>
+            <column header="driverUuid" name="driver_uuid"/>
+            <column header="driverName" name="driver_name"/>
+            <column header="driverLocation" name="driver_location"/>
+            <column header="pickUpLocation" name="pick_up_location"/>
+            <column header="dropUpLocation" name="drop_up_location"/>
+            <column header="orderTime" name="order_time" type="TIMESTAMP"/>
+            <column header="estimatedArrivalTime" name="estimated_arrival_time" type="TIMESTAMP"/>
+            <column header="costOfRide" name="cost_of_ride" type="DECIMAL"/>
+            <column header="timeToArrivalInMinutes" name="time_to_arrival_in_minutes"/>
+            <column header="rideLengthInKilometers" name="ride_length_in_kilometers"/>
+        </loadData>
+    </changeSet>
+
 </databaseChangeLog>

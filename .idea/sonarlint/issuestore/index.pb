@@ -111,3 +111,7 @@ t
 Dzuber/src/test/java/com/bbc/zuber/service/RideCancelServiceTest.java,a\d\ad1d54228b8d9c36a294b7830ae0883d904801ed
 r
 Bzuber/src/main/java/com/bbc/zuber/model/response/UserResponse.java,d\f\dfeb501326aad016de37ac2044354edf742071c5
+r
+Bzuber/src/test/java/com/bbc/zuber/controller/UserControllerIT.java,d\3\d3a1f780c7bee876ccd2f1cb65311d10c1976b06
+D
+zuber/checkstyle.xml,f\f\ffb75de969aef04b2ec59c83c62faee85b46c39b
