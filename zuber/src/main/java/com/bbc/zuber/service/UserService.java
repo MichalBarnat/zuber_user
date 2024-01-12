@@ -36,6 +36,11 @@ public class UserService {
         return userRepository.findAll(pageable);
     }
 
+    @Transactional(readOnly = true)
+    public Page<User> findAllDeleted(Pageable pageable) {
+        return userRepository.findAllDeleted(pageable);
+    }
+
 
     @Transactional(readOnly = true)
     public User findByUuid(UUID uuid) {

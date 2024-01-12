@@ -49,6 +49,13 @@ public class UserController {
         return new ResponseEntity<>(dtos, OK);
     }
 
+    @GetMapping("/deleted")
+    public ResponseEntity<Page<UserDto>> findAllDeleted(@PageableDefault Pageable pageable) {
+        Page<UserDto> dtos = userService.findAllDeleted(pageable)
+                .map(user -> modelMapper.map(user, UserDto.class));
+        return new ResponseEntity<>(dtos, OK);
+    }
+
     @PostMapping
     public ResponseEntity<UserDto> save(@RequestBody @Valid CreateUserCommand command) {
         User user = modelMapper.map(command, User.class);

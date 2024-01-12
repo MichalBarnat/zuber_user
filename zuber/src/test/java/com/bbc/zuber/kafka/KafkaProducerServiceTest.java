@@ -46,7 +46,8 @@ class KafkaProducerServiceTest {
 
         String userUuid = "123e4567-e89b-12d3-a456-426614174000";
         user = new User(1L, UUID.fromString(userUuid), "Test", "Test",
-                LocalDate.of(2000, 1, 1), MALE, "test.t@example.com", BigDecimal.valueOf(1000));
+                LocalDate.of(2000, 1, 1), MALE, "test.t@example.com",
+                BigDecimal.valueOf(1000), false);
     }
 
     @Test

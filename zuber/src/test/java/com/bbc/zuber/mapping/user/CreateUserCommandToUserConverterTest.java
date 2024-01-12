@@ -17,7 +17,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.openMocks;
 
-class CreateUserCommandToUserConverterTest {
+class   CreateUserCommandToUserConverterTest {
 
     @Mock
     private MappingContext<CreateUserCommand, User> mappingContext;

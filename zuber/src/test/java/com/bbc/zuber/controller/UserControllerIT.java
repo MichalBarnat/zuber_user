@@ -1,11 +1,11 @@
 package com.bbc.zuber.controller;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.bbc.zuber.DatabaseCleaner;
 import com.bbc.zuber.UserAppApplication;
 import com.bbc.zuber.exception.dto.ValidationErrorDto;
 import com.bbc.zuber.model.user.command.CreateUserCommand;
 import com.bbc.zuber.model.user.command.UpdateUserPartiallyCommand;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import liquibase.exception.LiquibaseException;
 import org.junit.jupiter.api.AfterEach;
@@ -104,6 +104,50 @@ class UserControllerIT {
     }
 
     @Test
+    void shouldFindAllDeletedUsers() throws Exception {
+        //Given
+        postman.perform(get("/api/users/1"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.uuid").value("123e4567-e89b-12d3-a456-426614174000"))
+                .andExpect(jsonPath("$.name").value("Jan"))
+                .andExpect(jsonPath("$.sex").value("MALE"));
+
+        postman.perform(get("/api/users/2"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(2))
+                .andExpect(jsonPath("$.uuid").value("123e4567-e89b-12d3-a456-426614174001"))
+                .andExpect(jsonPath("$.name").value("Anna"))
+                .andExpect(jsonPath("$.sex").value("FEMALE"));
+
+        //When
+        postman.perform(delete("/api/users/1"))
+                .andDo(print())
+                .andExpect(status().isNoContent());
+
+        postman.perform(delete("/api/users/2"))
+                .andDo(print())
+                .andExpect(status().isNoContent());
+
+        //Then
+        postman.perform(get("/api/users/deleted")
+                        .param("size", "3")
+                        .param("page", "0"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.content[0].id").value(1))
+                .andExpect(jsonPath("$.content[0].uuid").value("123e4567-e89b-12d3-a456-426614174000"))
+                .andExpect(jsonPath("$.content[0].name").value("Jan"))
+                .andExpect(jsonPath("$.content[0].sex").value("MALE"))
+                .andExpect(jsonPath("$.content[1].id").value(2))
+                .andExpect(jsonPath("$.content[1].uuid").value("123e4567-e89b-12d3-a456-426614174001"))
+                .andExpect(jsonPath("$.content[1].name").value("Anna"))
+                .andExpect(jsonPath("$.content[1].sex").value("FEMALE"));
+    }
+
+    @Test
     void shouldSaveUser() throws Exception {
         //Given
         CreateUserCommand command = CreateUserCommand.builder()
@@ -134,18 +178,13 @@ class UserControllerIT {
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id").value(11))
                 .andExpect(jsonPath("$.name").value(command.getName()))
-//                .andExpect(jsonPath("$.surname").value(command.getSurname()))
-//                .andExpect(jsonPath("$.dob").value(command.getDob()))
-//                .andExpect(jsonPath("$.email").value(command.getEmail()))
                 .andExpect(jsonPath("$.sex").value(command.getSex().toString()));
-//                .andExpect(jsonPath("$.balance").value(command.getBalance()));
 
         //Then
         postman.perform(get("/api/users/11"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(11))
-//                .andExpect(jsonPath("$.uuid").value("123e4567-e89b-12d3-a456-426614174000"))
                 .andExpect(jsonPath("$.name").value(command.getName()))
                 .andExpect(jsonPath("$.sex").value(command.getSex().toString()));
     }

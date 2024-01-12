@@ -55,7 +55,8 @@ class UserServiceTest {
 
         String userUuid = "123e4567-e89b-12d3-a456-426614174000";
         user = new User(1L, UUID.fromString(userUuid), "Test", "Test",
-                LocalDate.of(2000, 1, 1), MALE, "test.t@example.com", BigDecimal.valueOf(1000));
+                LocalDate.of(2000, 1, 1), MALE, "test.t@example.com",
+                BigDecimal.valueOf(1000), false);
     }
 
     @Test
@@ -93,6 +94,31 @@ class UserServiceTest {
         //Then
         verify(userRepository, times(1)).findAll(pageable);
         assertEquals(expectedUsers.size(), result.getContent().size());
+    }
+
+    @Test
+    void shouldFindAllDeletedUsers() {
+        //Given
+        Pageable pageable = Pageable.ofSize(5).withPage(0);
+
+        User user2 = new User();
+        user2.setIsDeleted(true);
+        user.setIsDeleted(true);
+
+        List<User> deletedUsers = new ArrayList<>();
+        deletedUsers.add(user);
+        deletedUsers.add(user2);
+
+        when(userRepository.findAllDeleted(pageable))
+                .thenReturn(new PageImpl<>(deletedUsers));
+
+        //When
+        Page<User> result = userService.findAllDeleted(pageable);
+
+        //Then
+        verify(userRepository, times(1)).findAllDeleted(pageable);
+        assertEquals(user, result.getContent().get(0));
+        assertEquals(user2, result.getContent().get(1));
     }
 
     @Test
