@@ -23,6 +23,7 @@ public class CreateUserCommandToUserConverter implements Converter<CreateUserCom
                 .sex(command.getSex())
                 .email(command.getEmail())
                 .balance(command.getBalance())
+                .isDeleted(false)
                 .build();
     }
 }

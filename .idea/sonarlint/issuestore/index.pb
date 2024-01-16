@@ -115,3 +115,9 @@ r
 Bzuber/src/test/java/com/bbc/zuber/controller/UserControllerIT.java,d\3\d3a1f780c7bee876ccd2f1cb65311d10c1976b06
 D
 zuber/checkstyle.xml,f\f\ffb75de969aef04b2ec59c83c62faee85b46c39b
+C
+zuber/lombok.config,5\a\5a48a09533cd394031a13a9d0bc2707bd169c6c4
+~
+Nzuber/src/main/java/com/bbc/zuber/model/riderequest/enums/RideRequestSize.java,a\2\a2ccd98090779725f716bef20051770fa80860a6
+~
+Nzuber/src/main/java/com/bbc/zuber/model/riderequest/enums/RideRequestType.java,3\4\34927b4c9dece52ae58c1797c2abcb9c76f2cd8e

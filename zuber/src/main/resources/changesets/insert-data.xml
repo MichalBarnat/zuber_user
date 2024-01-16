@@ -16,19 +16,14 @@
         </loadData>
     </changeSet>
 
-    <changeSet id="2" author="michal">
-        <sql>
-            CREATE SEQUENCE IF NOT EXISTS users_seq;
-        </sql>
-    </changeSet>
-
-    <changeSet id="3" author="michal">
+    <!--- UPDATE SEQUENCE NUMBER AFTER ADDING TESTING DATA -->
+    <changeSet id="1_2" author="michal">
         <sql>
             SELECT setval('users_seq', COALESCE((SELECT MAX(id)+1 FROM users), 1), false);
         </sql>
     </changeSet>
 
-    <changeSet id="4" author="michal">
+    <changeSet id="2_1" author="michal">
         <loadData encoding="UTF-8" file="changesets/data/ride_requests.csv" quotchar="&quot;" separator=","
                   tableName="ride_requests">
             <column header="id" name="id"/>
@@ -42,7 +37,14 @@
         </loadData>
     </changeSet>
 
-    <changeSet id="5" author="michal">
+    <!--- UPDATE SEQUENCE NUMBER AFTER ADDING TESTING DATA -->
+    <changeSet id="2_2" author="michal">
+        <sql>
+            SELECT setval('ride_requests_seq', COALESCE((SELECT MAX(id)+1 FROM ride_requests), 1), false);
+        </sql>
+    </changeSet>
+
+    <changeSet id="3_1" author="michal">
         <loadData encoding="UTF-8" file="changesets/data/funds_availability.csv" quotchar="&quot;" separator=","
                   tableName="funds_availability">
             <column header="id" name="id"/>
@@ -54,7 +56,14 @@
         </loadData>
     </changeSet>
 
-    <changeSet id="6" author="michal">
+    <!--- UPDATE SEQUENCE NUMBER AFTER ADDING TESTING DATA -->
+    <changeSet id="3_2" author="michal">
+        <sql>
+            SELECT setval('funds_availability_seq', COALESCE((SELECT MAX(id)+1 FROM funds_availability), 1), false);
+        </sql>
+    </changeSet>
+
+    <changeSet id="4_1" author="michal">
         <loadData encoding="UTF-8" file="changesets/data/ride_info.csv" quotchar="&quot;" separator=","
                   tableName="ride_info">
             <column header="id" name="id"/>
@@ -71,6 +80,13 @@
             <column header="timeToArrivalInMinutes" name="time_to_arrival_in_minutes"/>
             <column header="rideLengthInKilometers" name="ride_length_in_kilometers"/>
         </loadData>
+    </changeSet>
+
+    <!--- UPDATE SEQUENCE NUMBER AFTER ADDING TESTING DATA -->
+    <changeSet id="4_2" author="michal">
+        <sql>
+            SELECT setval('ride_info_seq', COALESCE((SELECT MAX(id)+1 FROM ride_info), 1), false);
+        </sql>
     </changeSet>
 
 </databaseChangeLog>
