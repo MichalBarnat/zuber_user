@@ -31,14 +31,20 @@ public class KafkaTopicConfig {
     }
 
     @Bean
-    public NewTopic rideCancel(){
+    public NewTopic rideCancel() {
         return TopicBuilder.name("ride-cancel")
                 .build();
     }
 
     @Bean
-    public NewTopic checkFundsAvailability(){
+    public NewTopic checkFundsAvailability() {
         return TopicBuilder.name("user-funds-availability")
+                .build();
+    }
+
+    @Bean
+    public NewTopic userMessage() {
+        return TopicBuilder.name("user-message")
                 .build();
     }
 

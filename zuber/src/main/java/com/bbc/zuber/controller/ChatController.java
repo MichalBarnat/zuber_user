@@ -1,47 +1,39 @@
 package com.bbc.zuber.controller;
 
-import com.bbc.zuber.model.message.Message;
-import com.bbc.zuber.model.response.UserResponse;
+import com.bbc.zuber.model.message.command.CreateMessageCommand;
+import com.bbc.zuber.model.message.dto.MessageDto;
+import com.bbc.zuber.model.message.response.MessageResponse;
+import com.bbc.zuber.service.MessageService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
+import java.util.LinkedList;
+
+import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/user-chat")
 @RequiredArgsConstructor
 public class ChatController {
 
-    private final RestTemplate restTemplate;
-
-    private final String serverUrl = "http://localhost:8090/api";
+    private final MessageService messageService;
 
     @PostMapping("/sendMessage")
-    public ResponseEntity<UserResponse> sendMessage(@RequestBody Message message) {
-        restTemplate.postForObject(serverUrl + "/saveMessage", message, String.class);
-        return ResponseEntity.ok(UserResponse.builder()
-                .message("Message was sent")
-                .build());
+    public ResponseEntity<MessageResponse> sendMessage(@RequestBody @Valid CreateMessageCommand command) {
+        MessageResponse response = messageService.sendMessage(command);
+        return new ResponseEntity<>(response, OK);
     }
 
-    @GetMapping("/getMessages")
-    public ResponseEntity<List<Message>> getMessages(@RequestParam String senderId, @RequestParam String receiverId) {
-        ResponseEntity<List<Message>> response = restTemplate.exchange(
-                serverUrl + "/getMessages?senderId=" + senderId + "&receiverId=" + receiverId,
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<List<Message>>() {}
-        );
-        return response;
+    @GetMapping("/messages/{rideInfoId}")
+    public ResponseEntity<LinkedList<MessageDto>> getMessages(@PathVariable long rideInfoId) {
+        LinkedList<MessageDto> messages = messageService.getMessages(rideInfoId);
+        return new ResponseEntity<>(messages, OK);
     }
-
 }
